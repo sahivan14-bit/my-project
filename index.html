@@ -49,13 +49,21 @@
     </div>
 
     <div class="contact-card">
-        <h3>Оставить заявку</h3>
-        <input type="text" id="userName" placeholder="Твое имя">
-        <button onclick="sayHello()" class="btn-send">Отправить</button>
-        <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
-        <div class="footer-social">
-        <!-- Конец карточки заявки -->
-       </div>
+    <h3>Оставить заявку</h3>
+    <form action=https://formspree.io/f/mzdopzbk method="POST" id="my-form">
+        <input type="text" name="name" placeholder="Твое имя" required style="width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none;">
+        <input type="email" name="email" placeholder="Твой Email" required style="width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none;">
+        <button type="submit" class="btn-send" id="submit-btn">Отправить</button>
+    </form>
+    <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
+</div>
+
+    <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
+</div>
+
+    <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
+</div>
+
 </div>
  <p id="welcome-message" style="margin-top: 15px; font-weight: bold;"></p>
  <!-- ВОТ ЭТОТ ТЕГ ВЫТОЛКНЕТ ВСЁ НИЖЕ ИЗ БЕЛОГО ОКНА -->
@@ -85,28 +93,46 @@
             else if (h >= 12 && h < 18) el.innerText = "ДОБРЫЙ ДЕНЬ, ВАНЯ!";
             else el.innerText = "ДОБРЫЙ ВЕЧЕР, ВАНЯ!";
         }
-
-        function sayHello() {
-    const input = document.getElementById('userName');
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById("my-form");
     const display = document.getElementById('welcome-message');
-    const btn = document.querySelector('.btn-send');
-    const name = input.value.trim();
+    const btn = document.getElementById('submit-btn');
 
-    if (name === "") {
-        display.innerText = "Эй, я не вижу твоего имени! 🙄";
-        display.style.color = "#e63946"; // Красный
-    } else {
-        btn.innerText = "Отправка...";
-        btn.style.background = "#28a745"; // Зеленый успех
-        
-        setTimeout(() => {
-            display.innerText = "Привет, " + name + "! Твоя заявка улетела мне в ЛС! 🚀";
-            display.style.color = "#2a9d8f";
-            btn.innerText = "Отправлено!";
-            input.value = ""; 
-        }, 1000);
+    if (form) {
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            btn.innerText = "Отправка...";
+            btn.disabled = true; // Блокируем кнопку, чтобы не нажимали дважды
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    display.innerText = "Заявка успешно улетела! 🚀";
+                    display.style.color = "#2a9d8f";
+                    btn.innerText = "Отправлено!";
+                    form.reset();
+                } else {
+                    alert("Ошибка Formspree! Проверь, активировал ли ты форму на почте.");
+                    btn.innerText = "Ошибка";
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                alert("Ошибка сети! Проверь интернет.");
+                btn.innerText = "Ошибка";
+                btn.disabled = false;
+            }
+        };
     }
-}
+});
+
+       
+
+
 
 
         document.addEventListener('mousemove', (e) => {
