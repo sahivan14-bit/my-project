@@ -321,5 +321,9 @@ body {
     color: #1d3557;
     font-size: 1.1rem;
 }
+.card, .goals-section, .contact-card, .project-card, .goals-calc {
+    border-radius: 25px !important; /* Делаем везде одинаково мягкие углы */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* Мягкая тень для всех */
+}
 
 
