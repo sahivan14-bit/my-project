@@ -302,5 +302,24 @@ body {
     margin-bottom: 5px;
     color: #1d3557;
 }
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    border: 1px solid #eee;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: #e63946;
+}
+
+.project-card h5 {
+    color: #1d3557;
+    font-size: 1.1rem;
+}
 
 
