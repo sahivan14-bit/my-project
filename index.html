@@ -163,6 +163,36 @@ document.addEventListener('DOMContentLoaded', () => {
         result.style.color = "#e63946";
     }
 }
+document.addEventListener('click', (e) => {
+    // Создаем 10 искорок при каждом клике
+    for (let i = 0; i < 10; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        document.body.appendChild(particle);
+
+        const size = Math.random() * 10 + 5;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        // Начальная позиция — там, где кликнули
+        particle.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+
+        // Случайное направление разлета
+        const destinationX = (Math.random() - 0.5) * 300;
+        const destinationY = (Math.random() - 0.5) * 300;
+
+        // Запускаем анимацию через мгновение
+        setTimeout(() => {
+            particle.style.transform = `translate(${e.clientX + destinationX}px, ${e.clientY + destinationY}px) scale(0)`;
+            particle.style.opacity = '0';
+        }, 10);
+
+        // Удаляем искру после анимации, чтобы не висла память
+        setTimeout(() => {
+            particle.remove();
+        }, 600);
+    }
+});
 
     </script>
     
