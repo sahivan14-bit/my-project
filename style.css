@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -133,3 +134,140 @@ body {
     100% { transform: scale(1); opacity: 1; }
 }
 
+=======
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    padding: 50px 20px;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card, .goals-section, .contact-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 1px solid white;
+    text-align: center;
+    max-width: 380px;
+    width: 100%;
+    margin-bottom: 50px;
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+}
+
+.profile-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 5px solid white; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.main-title { color: #e63946; letter-spacing: 2px; margin-bottom: 10px; font-size: 1.5rem; }
+
+.skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.skill-item { background: white; padding: 10px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; color: #457b9d; transition: 0.3s; }
+.skill-item:hover { transform: scale(1.1); color: #e63946; box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3); }
+
+.goal-card { padding: 15px; background: rgba(255,255,255,0.5); border-radius: 20px; margin-top: 15px; }
+.contact-card input { width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none; }
+.btn-send { background: #457b9d; color: white; border: none; padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; }
+/* Пульсация для кнопки ТГ */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
+}
+
+.btn-contact {
+    display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px;
+    background: #e63946; color: white !important; text-decoration: none;
+    border-radius: 50px; font-weight: bold; margin: 20px 0;
+    animation: pulse 2s infinite; /* Возвращаем пульсацию */
+}
+
+.btn-send { transition: 0.3s; } /* Чтобы плавно меняла цвет на зеленый */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Находим нашу кнопку и задаем ей поведение */
+.social-circle {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: white !important;
+    border-radius: 50%;
+    margin: 40px auto !important;
+    transition: all 0.3s ease-out !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 9999; /* Выводим на самый передний план */
+    text-decoration: none;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.social-circle:hover {
+    background-color: #e63946 !important; /* Краснеет */
+    transform: translateY(-20px) scale(1.2) !important; /* Взлетает */
+}
+
+.social-circle svg {
+    fill: #0088cc;
+    transition: 0.3s;
+}
+
+.social-circle:hover svg {
+    fill: white !important; /* Самолетик белеет */
+}
+/* Опускаем форму ниже */
+.contact-card {
+    margin-top: 60px !important;
+}
+
+/* Опускаем кружок под форму */
+.footer-social {
+    margin: 50px 0 !important;
+}
+
+/* Стиль твоего футера */
+.site-footer {
+    text-align: center;
+    padding-bottom: 40px;
+    color: rgba(255, 255, 255, 0.8); /* Сделаем его белым и полупрозрачным на градиенте */
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+.footer-social {
+    margin: 40px 0;
+}
+#calc-result {
+    font-size: 1.2rem;
+    color: #e63946 !important; /* Сделаем его фирменным красным для акцента */
+    animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+>>>>>>> 6a5aa988c4dfe4e442bf76e90b6123bfcc3ffdab

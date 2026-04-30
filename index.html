@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -167,3 +168,174 @@ document.addEventListener('DOMContentLoaded', () => {
     
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Проект</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+    <!-- 1. ФОТО МОПСА -->
+    <img src="png.jpg" alt="Мопс" class="profile-img">
+    
+    <!-- 2. ПРИВЕТСТВИЕ -->
+    <h1 class="main-title" id="greeting">ДОБРОЕ УТРО, ВАНЯ!</h1>
+    
+    <!-- 3. ТВОЙ СТАТУС -->
+    <p style="color: #457b9d; margin-bottom: 10px; font-weight: bold;">
+        Будущий Fullstack-разработчик. Иду к цели!
+    </p>
+    
+    <!-- 4. КНОПКА НАПИСАТЬ -->
+    <a href="https://t.me" class="btn-contact" target="_blank">
+        <i class="fa-brands fa-telegram"></i> Написать мне
+    </a>
+
+    <!-- 5. НАВЫКИ -->
+    <div class="skills-container">
+        <div class="skill-item">🌐 HTML5</div>
+        <div class="skill-item">🎨 CSS3</div>
+        <div class="skill-item">📱 Адаптив</div>
+        <div class="skill-item">🤖 ИИ</div>
+    </div>
+</div>
+
+    <div class="goals-section">
+        <h2 style="color:#1d3557; margin-bottom:20px;">МОЙ ПУТЬ К 16 ГОДАМ</h2>
+        <div class="contact-card goals-calc">
+    <h3>🧮 Калькулятор цели</h3>
+    <p style="font-size: 0.8rem; margin-bottom: 15px;">Узнай, сколько копить в день на MacBook!</p>
+    <input type="number" id="priceInput" placeholder="Цена MacBook (напр. 150000)">
+    <button onclick="calcGoal()" class="btn-send">Рассчитать</button>
+    <p id="calc-result" style="margin-top: 15px; font-weight: bold; color: #1d3557;"></p>
+</div>
+
+        <div class="goal-card"><h3>💻 Девайсы</h3><p>MacBook Pro & iPhone 17</p></div>
+        <div class="goal-card"><h3>📈 Капитал</h3><p>Накопительный счет 1.5 млн</p></div>
+    </div>
+
+    <div class="contact-card">
+    <h3>Оставить заявку</h3>
+    <form action=https://formspree.io/f/mzdopzbk method="POST" id="my-form">
+        <input type="text" name="name" placeholder="Твое имя" required style="width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none;">
+        <input type="email" name="email" placeholder="Твой Email" required style="width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none;">
+        <button type="submit" class="btn-send" id="submit-btn">Отправить</button>
+    </form>
+    <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
+</div>
+
+    <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
+</div>
+
+    <p id="welcome-message" style="margin-top:15px; font-weight:bold;"></p>
+</div>
+
+</div>
+ <p id="welcome-message" style="margin-top: 15px; font-weight: bold;"></p>
+ <!-- ВОТ ЭТОТ ТЕГ ВЫТОЛКНЕТ ВСЁ НИЖЕ ИЗ БЕЛОГО ОКНА -->
+  <a href="https://t.me/sxlwwx" target="_blank" class="social-circle">
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="#0088cc" style="transition: 0.3s;">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.11.02-1.93 1.23-5.46 3.62-.51.35-.98.52-1.4.51-.46-.01-1.35-.26-2.01-.48-.81-.27-1.45-.42-1.39-.89.03-.25.38-.51 1.07-.77 4.18-1.81 6.97-3.01 8.36-3.58 3.97-1.63 4.8-1.91 5.34-1.92.12 0 .38.03.55.17.14.11.18.26.2.46.02.07.02.14 0 .22z"/>
+    </svg>
+</a>
+
+</a>
+
+    </a>
+</div>
+<footer class="site-footer">
+    <p>© 2026 Разработано Ваней. Путь к 200к начат.</p>
+</footer>
+
+    <!-- Теперь иконка ТГ будет САМА ПО СЕБЕ -->
+    
+    <!-- Твой футер в самом низу -->
+   
+    <script>
+        function updateGreeting() {
+            const el = document.getElementById('greeting');
+            const h = new Date().getHours();
+            if (h >= 5 && h < 12) el.innerText = "ДОБРОЕ УТРО, ВАНЯ!";
+            else if (h >= 12 && h < 18) el.innerText = "ДОБРЫЙ ДЕНЬ, ВАНЯ!";
+            else el.innerText = "ДОБРЫЙ ВЕЧЕР, ВАНЯ!";
+        }
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById("my-form");
+    const display = document.getElementById('welcome-message');
+    const btn = document.getElementById('submit-btn');
+
+    if (form) {
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            btn.innerText = "Отправка...";
+            btn.disabled = true; // Блокируем кнопку, чтобы не нажимали дважды
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    display.innerText = "Заявка успешно улетела! 🚀";
+                    display.style.color = "#2a9d8f";
+                    btn.innerText = "Отправлено!";
+                    form.reset();
+                } else {
+                    alert("Ошибка Formspree! Проверь, активировал ли ты форму на почте.");
+                    btn.innerText = "Ошибка";
+                    btn.disabled = false;
+                }
+            } catch (error) {
+                alert("Ошибка сети! Проверь интернет.");
+                btn.innerText = "Ошибка";
+                btn.disabled = false;
+            }
+        };
+    }
+});
+
+       
+
+
+
+
+        document.addEventListener('mousemove', (e) => {
+            document.querySelectorAll('.card, .goals-section, .contact-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                if (e.clientX > rect.left && e.clientX < rect.right && e.clientY > rect.top && e.clientY < rect.bottom) {
+                    card.style.transform = `perspective(1000px) rotateX(${-y * 25}deg) rotateY(${x * 25}deg) scale(1.05)`;
+                } else {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                }
+            });
+        });
+        updateGreeting();
+        function calcGoal() {
+    const price = document.getElementById('priceInput').value;
+    const result = document.getElementById('calc-result');
+    
+    if (price > 0) {
+        // До 16 лет у нас (условно) 730 дней (2 года)
+        const perDay = Math.round(price / 730);
+        result.innerText = "Тебе нужно откладывать всего " + perDay + " руб. в день!";
+        result.style.color = "#2a9d8f";
+    } else {
+        result.innerText = "Введи реальную цену!";
+        result.style.color = "#e63946";
+    }
+}
+
+    </script>
+    
+</body>
+</html>
+>>>>>>> 6a5aa988c4dfe4e442bf76e90b6123bfcc3ffdab
