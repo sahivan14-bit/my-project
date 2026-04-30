@@ -325,5 +325,29 @@ body {
     border-radius: 25px !important; /* Делаем везде одинаково мягкие углы */
     box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* Мягкая тень для всех */
 }
+/* Анимация перелива золота */
+@keyframes goldShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Применяем стиль к кнопке в карточке проекта */
+.project-card .btn-send {
+    background: linear-gradient(45deg, #457b9d, #1d3557, #457b9d);
+    background-size: 200% 200%;
+    transition: all 0.4s ease;
+    border: none;
+}
+
+.project-card .btn-send:hover {
+    background: linear-gradient(45deg, #ffd700, #ffcc00, #ffae00);
+    background-size: 200% 200%;
+    animation: goldShine 2s linear infinite;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    color: #1d3557 !important;
+    font-weight: bold;
+}
 
 
