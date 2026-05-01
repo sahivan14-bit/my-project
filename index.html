@@ -87,8 +87,8 @@
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
 
-            const rotX = -(y - centerY) / 30; // Чувствительность
-            const rotY = (x - centerX) / 30;
+            const rotX = -(y - centerY) / 40; // Чувствительность
+            const rotY = (x - centerX) / 40;
 
             card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
         } else {
