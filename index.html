@@ -56,6 +56,17 @@
             <p id="resultText" style="margin-top: 15px; font-weight: bold; color: #1d3557;"></p>
         </div>
     </div>
+<hr style="margin: 30px 0; border: 0; border-top: 1px solid #eee;">
+
+<div class="contact-card">
+    <h4 style="color: #457b9d; margin-bottom: 20px;">ОСТАВИТЬ ЗАЯВКУ</h4>
+    <form action="https://formspree.io" method="POST" id="my-form">
+        <input type="text" name="name" placeholder="Твое имя" required style="width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 10px;">
+        <input type="email" name="email" placeholder="Твой Email" required style="width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 10px;">
+        <button type="submit" class="btn-send" id="submit-form-btn" style="width: 100%;">Отправить проект</button>
+    </form>
+    <p id="form-status" style="margin-top:10px; font-weight:bold;"></p>
+</div>
 
     <!-- БЛОК 3: ТВОЯ МЕЧТА (Путь к 16) -->
     <div class="card" style="margin-top: 40px;">
@@ -101,4 +112,43 @@
         el.addEventListener('mouseenter', () => follower.style.transform = 'translate(-50%, -50%) scale(2)');
         el.addEventListener('mouseleave', () => follower.style.transform = 'translate(-50%, -50%) scale(1)');
     });
+    // Искорки при клике
+document.addEventListener('click', (e) => {
+    for (let i = 0; i < 8; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        document.body.appendChild(p);
+        p.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        const dX = (Math.random() - 0.5) * 200;
+        const dY = (Math.random() - 0.5) * 200;
+        setTimeout(() => {
+            p.style.transform = `translate(${e.clientX + dX}px, ${e.clientY + dY}px) scale(0)`;
+            p.style.opacity = '0';
+        }, 10);
+        setTimeout(() => p.remove(), 600);
+    }
+});
+
+// Работа формы
+const contactForm = document.getElementById("my-form");
+if (contactForm) {
+    contactForm.onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("submit-form-btn");
+        const status = document.getElementById("form-status");
+        btn.innerText = "Отправка...";
+        const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+            status.innerText = "Заявка улетела! 🚀";
+            status.style.color = "#2a9d8f";
+            contactForm.reset();
+            btn.innerText = "Отправлено!";
+        }
+    };
+}
+
 </script>
