@@ -222,9 +222,22 @@ const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
 
 document.addEventListener('mousemove', (e) => {
-    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    follower.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+    // Используем requestAnimationFrame для идеальной плавности
+    requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+        // Смещаем фолловер, чтобы он был четко по центру курсора
+        follower.style.transform = `translate3d(${e.clientX - 12}px, ${e.clientY - 12}px, 0)`;
+    });
 });
+
+// Эффект при клике (курсор сжимается)
+document.addEventListener('mousedown', () => {
+    follower.style.transform += ' scale(0.5)';
+});
+document.addEventListener('mouseup', () => {
+    follower.style.transform += ' scale(1)';
+});
+
 
     </script>
     

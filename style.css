@@ -355,27 +355,31 @@ body {
     75% { transform: rotate(2deg); }
 }
 /* Скрываем стандартный курсор на всем сайте */
-body { cursor: none; }
+/* Полностью скрываем системный курсор, чтобы не двоилось */
+* { cursor: none !important; }
 
 .cursor, .cursor-follower {
     position: fixed;
+    top: 0;
+    left: 0;
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
-    transition: transform 0.1s ease;
+    pointer-events: none; /* Это ВАЖНО, чтобы можно было кликать СКВОЗЬ курсор */
+    z-index: 100000; /* Самый высокий слой, выше мопса и всего остального */
+    will-change: transform;
 }
 
 .cursor {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background-color: #e63946;
 }
 
 .cursor-follower {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border: 2px solid #e63946;
-    transition: transform 0.15s ease-out, opacity 0.3s ease;
+    background: rgba(230, 57, 70, 0.1);
+    transition: transform 0.08s ease-out; /* Ускоряем отклик */
 }
 
 
