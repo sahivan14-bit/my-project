@@ -127,6 +127,30 @@ document.addEventListener('mouseleave', () => {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
     });
 });
+document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.card');
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const cardX = rect.left + rect.width / 2;
+        const cardY = rect.top + rect.height / 2;
+
+        // Вычисляем силу наклона (20 — это чувствительность, можно менять)
+        const rotateX = (cardY - mouseY) / 20;
+        const rotateY = (mouseX - cardX) / 20;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+});
+
+// Чтобы карточки плавно возвращались в ровное положение, когда мышка уходит
+document.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.card').forEach(card => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+    });
+});
 
 
     </script>

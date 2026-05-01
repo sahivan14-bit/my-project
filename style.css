@@ -194,3 +194,9 @@ body {
     animation: shake 0.3s infinite !important; /* Вибрация при наведении */
     background: #1d3557;
 }
+.card {
+    /* ... твои старые стили ... */
+    transition: transform 0.1s ease-out; /* Короткое время для отклика */
+    transform-style: preserve-3d;
+    will-change: transform;
+}
