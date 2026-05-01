@@ -1,457 +1,82 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-
+/* ОБЩИЙ СТИЛЬ САЙТА */
 body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
+    background: linear-gradient(135deg, #e63946 0%, #457b9d 100%);
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    padding: 50px 20px;
+    padding: 40px 20px;
+    cursor: none !important; /* Наш кастомный курсор */
 }
 
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.card, .goals-section, .contact-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border: 1px solid white;
-    text-align: center;
-    max-width: 380px;
-    width: 100%;
-    margin-bottom: 50px;
-    transition: transform 0.1s ease-out;
-    transform-style: preserve-3d;
-}
-
-.profile-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 5px solid white; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-.main-title { color: #e63946; letter-spacing: 2px; margin-bottom: 10px; font-size: 1.5rem; }
-
-.skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-.skill-item { background: white; padding: 10px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; color: #457b9d; transition: 0.3s; }
-.skill-item:hover { transform: scale(1.1); color: #e63946; box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3); }
-
-.goal-card { padding: 15px; background: rgba(255,255,255,0.5); border-radius: 20px; margin-top: 15px; }
-.contact-card input { width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none; }
-.btn-send { background: #457b9d; color: white; border: none; padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; }
-/* Пульсация для кнопки ТГ */
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
-}
-
-.btn-contact {
-    display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px;
-    background: #e63946; color: white !important; text-decoration: none;
-    border-radius: 50px; font-weight: bold; margin: 20px 0;
-    animation: pulse 2s infinite; /* Возвращаем пульсацию */
-}
-
-.btn-send { transition: 0.3s; } /* Чтобы плавно меняла цвет на зеленый */
-.footer-social {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-
-/* Находим нашу кнопку и задаем ей поведение */
-.social-circle {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    background-color: white !important;
-    border-radius: 50%;
-    margin: 40px auto !important;
-    transition: all 0.3s ease-out !important;
-    cursor: pointer !important;
-    position: relative;
-    z-index: 9999; /* Выводим на самый передний план */
-    text-decoration: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.social-circle:hover {
-    background-color: #e63946 !important; /* Краснеет */
-    transform: translateY(-20px) scale(1.2) !important; /* Взлетает */
-}
-
-.social-circle svg {
-    fill: #0088cc;
-    transition: 0.3s;
-}
-
-.social-circle:hover svg {
-    fill: white !important; /* Самолетик белеет */
-}
-/* Опускаем форму ниже */
-.contact-card {
-    margin-top: 60px !important;
-}
-
-/* Опускаем кружок под форму */
-.footer-social {
-    margin: 50px 0 !important;
-}
-
-/* Стиль твоего футера */
-.site-footer {
-    text-align: center;
-    padding-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8); /* Сделаем его белым и полупрозрачным на градиенте */
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-.footer-social {
-    margin: 40px 0;
-}
-#calc-result {
-    font-size: 1.2rem;
-    color: #e63946 !important; /* Сделаем его фирменным красным для акцента */
-    animation: bounceIn 0.5s ease-out;
-}
-
-@keyframes bounceIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    70% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-
-
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-
-body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    padding: 50px 20px;
-}
-
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.card, .goals-section, .contact-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(15px);
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    border: 1px solid white;
-    text-align: center;
-    max-width: 380px;
-    width: 100%;
-    margin-bottom: 50px;
-    transition: transform 0.1s ease-out;
-    transform-style: preserve-3d;
-}
-
-.profile-img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 5px solid white; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-.main-title { color: #e63946; letter-spacing: 2px; margin-bottom: 10px; font-size: 1.5rem; }
-
-.skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-.skill-item { background: white; padding: 10px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; color: #457b9d; transition: 0.3s; }
-.skill-item:hover { transform: scale(1.1); color: #e63946; box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3); }
-
-.goal-card { padding: 15px; background: rgba(255,255,255,0.5); border-radius: 20px; margin-top: 15px; }
-.contact-card input { width: 100%; padding: 12px; border-radius: 15px; border: 1px solid #ddd; margin-bottom: 15px; outline: none; }
-.btn-send { background: #457b9d; color: white; border: none; padding: 12px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; }
-/* Пульсация для кнопки ТГ */
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(230, 57, 70, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); }
-}
-
-.btn-contact {
-    display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px;
-    background: #e63946; color: white !important; text-decoration: none;
-    border-radius: 50px; font-weight: bold; margin: 20px 0;
-    animation: pulse 2s infinite; /* Возвращаем пульсацию */
-}
-
-.btn-send { transition: 0.3s; } /* Чтобы плавно меняла цвет на зеленый */
-.footer-social {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
-
-/* Находим нашу кнопку и задаем ей поведение */
-.social-circle {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    background-color: white !important;
-    border-radius: 50%;
-    margin: 40px auto !important;
-    transition: all 0.3s ease-out !important;
-    cursor: pointer !important;
-    position: relative;
-    z-index: 9999; /* Выводим на самый передний план */
-    text-decoration: none;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.social-circle:hover {
-    background-color: #e63946 !important; /* Краснеет */
-    transform: translateY(-20px) scale(1.2) !important; /* Взлетает */
-}
-
-.social-circle svg {
-    fill: #0088cc;
-    transition: 0.3s;
-}
-
-.social-circle:hover svg {
-    fill: white !important; /* Самолетик белеет */
-}
-/* Опускаем форму ниже */
-.contact-card {
-    margin-top: 60px !important;
-}
-
-/* Опускаем кружок под форму */
-.footer-social {
-    margin: 50px 0 !important;
-}
-
-/* Стиль твоего футера */
-.site-footer {
-    text-align: center;
-    padding-bottom: 40px;
-    color: rgba(255, 255, 255, 0.8); /* Сделаем его белым и полупрозрачным на градиенте */
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-.footer-social {
-    margin: 40px 0;
-}
-#calc-result {
-    font-size: 1.2rem;
-    color: #e63946 !important; /* Сделаем его фирменным красным для акцента */
-    animation: bounceIn 0.5s ease-out;
-}
-
-@keyframes bounceIn {
-    0% { transform: scale(0.5); opacity: 0; }
-    70% { transform: scale(1.1); }
-    100% { transform: scale(1); opacity: 1; }
-}
-.particle {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 8px;
-    height: 8px;
-    background: #e63946; /* Цвет твоих кнопок */
-    border-radius: 50%;
-    pointer-events: none; /* Чтобы искры не мешали нажимать */
-    z-index: 9999;
-    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-}
-.progress-bg {
-    width: 100%;
-    background: #f1f1f1;
-    border-radius: 10px;
-    height: 10px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: #457b9d;
-    border-radius: 10px;
-    transition: width 1.5s ease-in-out;
-}
-
-.skill-bar-container p {
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #1d3557;
-}
-.project-card {
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: 0.3s;
-    border: 1px solid #eee;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    border-color: #e63946;
-}
-
-.project-card h5 {
-    color: #1d3557;
-    font-size: 1.1rem;
-}
-.card, .goals-section, .contact-card, .project-card, .goals-calc {
-    border-radius: 25px !important; /* Делаем везде одинаково мягкие углы */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08) !important; /* Мягкая тень для всех */
-}
-/* Анимация перелива золота */
-@keyframes goldShine {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Применяем стиль к кнопке в карточке проекта */
-.project-card .btn-send {
-    background: linear-gradient(45deg, #457b9d, #1d3557, #457b9d);
-    background-size: 200% 200%;
-    transition: all 0.4s ease;
-    border: none;
-}
-
-.project-card .btn-send:hover {
-    background: linear-gradient(45deg, #ffd700, #ffcc00, #ffae00);
-    background-size: 200% 200%;
-    animation: goldShine 2s linear infinite;
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-    color: #1d3557 !important;
-    font-weight: bold;
-}
-@keyframes welcomeWiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-2deg); }
-    75% { transform: rotate(2deg); }
-}
-/* Скрываем стандартный курсор на всем сайте */
-/* Полностью скрываем системный курсор, чтобы не двоилось */
-* { cursor: none !important; }
-
-.cursor, .cursor-follower {
-    position: fixed;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    pointer-events: none; /* Это ВАЖНО, чтобы можно было кликать СКВОЗЬ курсор */
-    z-index: 100000; /* Самый высокий слой, выше мопса и всего остального */
-    will-change: transform;
-}
-
-.cursor {
-    width: 6px;
-    height: 6px;
-    background-color: #e63946;
-}
-
-.cursor-follower {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #e63946;
-    background: rgba(230, 57, 70, 0.1);
-    transition: transform 0.08s ease-out; /* Ускоряем отклик */
-}
-html {
-    scroll-behavior: smooth; /* Плавный переход к секциям */
-}
-
-body {
-    overflow-x: hidden; /* Убираем лишнюю боковую прокрутку */
-    min-height: 200vh; /* Даем сайту «запас» высоты */
-}
-.service-item {
-    display: flex; /* Выстраиваем иконку и текст в ряд */
-    align-items: center;
-    gap: 15px; /* Расстояние между иконкой и текстом */
-    text-align: left !important;
-}
-
-.service-item strong {
-    font-size: 1.1rem;
-    white-space: nowrap; /* Запрещаем перенос заголовка услуги */
-}
-
-.service-item strong {
-    font-size: 1.1rem;
-    display: block; /* Даем заголовку свою строку */
-    margin-bottom: 5px;
-    color: #1d3557;
-    /* Убираем nowrap, чтобы текст мог переноситься, если места мало */
-    white-space: normal; 
-}
-
-.service-item {
-    display: flex;
-    flex-direction: column; /* Ставим иконку сверху, а текст под ней — так влезет всё! */
-    align-items: flex-start;
-    padding: 20px !important;
-    gap: 10px;
-}
+/* КАРТОЧКИ (ВАГОНЫ) */
 .card {
     background: white;
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    
-    /* ВОТ ЭТО ГЛАВНОЕ: */
-    margin-bottom: 40px !important; /* Расстояние между карточками */
-    
+    padding: 35px;
+    border-radius: 35px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin-bottom: 40px; /* Тот самый разрыв! */
     width: 100%;
     max-width: 400px;
+    text-align: center;
     position: relative;
-    z-index: 10;
+    box-sizing: border-box;
 }
-/* Круглый мопс */
+
+/* КРУГЛЫЙ МОПС */
 .avatar img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%; /* Делаем круглым */
     object-fit: cover;
-    border: 5px solid white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 6px solid #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
 }
 
-/* Искорки */
-.particle {
-    position: fixed;
-    width: 8px;
-    height: 8px;
+/* КУРСОР И ИСКОРКИ */
+.cursor { position: fixed; width: 8px; height: 8px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+.cursor-follower { position: fixed; width: 30px; height: 30px; border: 2px solid #e63946; border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s; transform: translate(-50%, -50%); }
+.particle { position: fixed; width: 6px; height: 6px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10001; transition: 0.6s ease-out; }
+
+/* ПОЛОСКИ НАВЫКОВ */
+.progress-bg { width: 100%; background: #f1f1f1; border-radius: 10px; height: 10px; overflow: hidden; margin: 10px 0; }
+.progress-fill { height: 100%; background: #457b9d; transition: width 1.5s ease-in-out; }
+
+/* УСЛУГИ */
+.service-item {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+    border: 1px solid #f0f0f0;
+    transition: 0.3s;
+}
+.service-item:hover { transform: translateX(10px); border-color: #e63946; }
+
+/* КНОПКИ */
+.btn-send {
     background: #e63946;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 999999;
-    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    width: 100%;
+    cursor: none;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
 }
+.btn-send:hover { background: #1d3557; transform: scale(1.05); }
 
-
-
+/* ЗОЛОТАЯ КАРТОЧКА ПРОЕКТА */
+.gold-project {
+    border: 2px solid #ffd700;
+    padding: 20px;
+    border-radius: 25px;
+    background: linear-gradient(to bottom, #fff, #fff9e6);
+}
