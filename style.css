@@ -389,5 +389,21 @@ body {
     overflow-x: hidden; /* Убираем лишнюю боковую прокрутку */
     min-height: 200vh; /* Даем сайту «запас» высоты */
 }
+.service-item {
+    display: flex; /* Выстраиваем иконку и текст в ряд */
+    align-items: center;
+    gap: 15px; /* Расстояние между иконкой и текстом */
+    text-align: left !important;
+}
+
+.service-item strong {
+    font-size: 1.1rem;
+    white-space: nowrap; /* Запрещаем перенос заголовка услуги */
+}
+
+.service-item p {
+    margin-top: 5px;
+    line-height: 1.4; /* Чтобы текст читался легче */
+}
 
 
