@@ -57,55 +57,48 @@
     </div>
 
     <script>
-        window.onload = function() {
-    const cards = document.querySelectorAll('.card');
-    const cursor = document.querySelector('.cursor');
-    const follower = document.querySelector('.cursor-follower');
+        const c = document.querySelector('.cursor');
+        const f = document.querySelector('.cursor-follower');
+        const cards = document.querySelectorAll('.card');
 
-    // Функция для движения
-    function handleMove(e) {
-        const x = e.clientX;
-        const y = e.clientY;
+        document.addEventListener('mousemove', e => {
+            const x = e.clientX;
+            const y = e.clientY;
 
-        // Курсор
-        if (cursor && follower) {
-            cursor.style.left = x + 'px';
-            cursor.style.top = y + 'px';
-            follower.style.left = x + 'px';
-            follower.style.top = y + 'px';
+            // 1. Движение курсора
+            c.style.left = f.style.left = x + 'px';
+            c.style.top = f.style.top = y + 'px';
+
+            // 2. Аккуратное 3D при наведении
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+                    const rotX = -(y - (rect.top + rect.height/2)) / 25;
+                    const rotY = (x - (rect.left + rect.width/2)) / 25;
+                    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+                } else {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                }
+            });
+        });
+
+        // 3. Искорки при клике
+        document.addEventListener('click', e => {
+            for(let i=0; i<8; i++){
+                const p = document.createElement('div');
+                p.className = 'particle';
+                document.body.appendChild(p);
+                p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+                const dX = (Math.random()-0.5)*200, dY = (Math.random()-0.5)*200;
+                setTimeout(() => { p.style.transform = `translate(${dX}px, ${dY}px) scale(0)`; p.style.opacity = 0; }, 10);
+                setTimeout(() => p.remove(), 600);
+            }
+        });
+
+        function calc() {
+            const val = document.getElementById('goal').value;
+            if(val) document.getElementById('res').innerText = "Нужно копить по " + Math.round(val/730) + " руб/день";
         }
-
-        // ЖЕСТКИЙ ТИЛТ (наклон)
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const cardX = rect.left + rect.width / 2;
-            const cardY = rect.top + rect.height / 2;
-
-            // Делим на 10 для мощного наклона
-            const rotX = -(y - cardY) / 10;
-            const rotY = (x - cardX) / 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(10px)`;
-        });
-    }
-
-    // Слушаем движение мыши по ВСЕМУ экрану
-    document.addEventListener('mousemove', handleMove);
-
-    // Сброс при уходе мыши
-    document.addEventListener('mouseleave', () => {
-        cards.forEach(card => {
-            card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
-        });
-    });
-};
-
-function calculate() {
-    const val = document.getElementById('goalInput').value;
-    const res = document.getElementById('calcResult');
-    if(val) res.innerText = "Нужно откладывать: " + Math.round(val/730) + " руб/день";
-}
-
     </script>
 </body>
 </html>
