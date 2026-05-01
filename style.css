@@ -12,26 +12,53 @@ body {
 }
 
 /* КАРТОЧКИ (ВАГОНЫ) */
+/* Делаем карточки объемными */
 .card {
     background: white;
-    padding: 35px;
-    border-radius: 35px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    margin-bottom: 40px; /* Тот самый разрыв! */
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-    box-sizing: border-box;
-    /* Вытягиваем первую карточку */
-.card:first-of-type {
-    padding-top: 60px;
-    padding-bottom: 60px;
-    min-height: 500px; /* Делаем её выше и солиднее */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: 40px 30px;
+    border-radius: 40px;
+    /* Глубокая мягкая тень */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+    margin-bottom: 50px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
+/* Эффект при наведении на всю карточку */
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+}
+
+/* Оживляем мопса */
+.avatar img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid white;
+    box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3); /* Красное свечение вокруг мопса */
+    /* ЗАПУСКАЕМ ВРАЩЕНИЕ */
+    animation: rotateFull 15s linear infinite;
+}
+
+@keyframes rotateFull {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Делаем кнопку "Написать мне" сочной */
+.btn-send {
+    background: linear-gradient(45deg, #e63946, #ff4d6d);
+    box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4);
+    border: none;
+    color: white;
+    padding: 18px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 
 /* Анимация вращения для мопса (плавное покачивание) */
 .avatar img {
@@ -56,7 +83,7 @@ body {
     transform: scale(1.1);
 }
 
-}
+
 
 /* КРУГЛЫЙ МОПС */
 .avatar img {

@@ -90,6 +90,18 @@
         }, 600);
     });
 });
+document.querySelectorAll('.card').forEach(item => {
+    item.addEventListener('click', () => {
+        // Добавляем класс анимации
+        item.style.transition = "transform 0.8s ease-in-out";
+        item.style.transform = "rotateY(360deg)";
+        
+        // Сбрасываем вращение через секунду, чтобы можно было нажать еще раз
+        setTimeout(() => {
+            item.style.transform = "rotateY(0deg)";
+        }, 800);
+    });
+});
 
     </script>
 </body>
