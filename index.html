@@ -107,6 +107,8 @@ function calculate() {
     const res = document.getElementById('calcResult');
     if(val) res.innerText = "Тебе нужно откладывать всего " + Math.round(val/730) + " руб. в день!";
 }
+console.log("Скрипт запущен, карточек найдено: " + document.querySelectorAll('.card').length);
+alert("Скрипт работает!"); 
 
     </script>
 </body>
