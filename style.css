@@ -354,5 +354,28 @@ body {
     25% { transform: rotate(-2deg); }
     75% { transform: rotate(2deg); }
 }
+/* Скрываем стандартный курсор на всем сайте */
+body { cursor: none; }
+
+.cursor, .cursor-follower {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.1s ease;
+}
+
+.cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #e63946;
+}
+
+.cursor-follower {
+    width: 25px;
+    height: 25px;
+    border: 2px solid #e63946;
+    transition: transform 0.15s ease-out, opacity 0.3s ease;
+}
 
 

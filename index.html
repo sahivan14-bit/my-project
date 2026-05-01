@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <div class="cursor"></div>
+<div class="cursor-follower"></div>
     <link rel="stylesheet" href="https://cloudflare.com">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -215,6 +217,13 @@ document.addEventListener('click', (e) => {
             particle.remove();
         }, 600);
     }
+});
+const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    follower.style.transform = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
 });
 
     </script>
