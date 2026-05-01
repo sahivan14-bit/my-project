@@ -381,5 +381,13 @@ body {
     background: rgba(230, 57, 70, 0.1);
     transition: transform 0.08s ease-out; /* Ускоряем отклик */
 }
+html {
+    scroll-behavior: smooth; /* Плавный переход к секциям */
+}
+
+body {
+    overflow-x: hidden; /* Убираем лишнюю боковую прокрутку */
+    min-height: 200vh; /* Даем сайту «запас» высоты */
+}
 
 

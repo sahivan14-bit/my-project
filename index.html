@@ -63,6 +63,22 @@
     <div class="goals-section">
         <h2 style="color:#1d3557; margin-bottom:20px;">МОЙ ПУТЬ К 16 ГОДАМ</h2>
         <div class="contact-card goals-calc">
+            <div class="card services-section" style="margin-top: 30px;">
+    <h4 style="color: #457b9d; margin-bottom: 20px;">ЧЕМ Я МОГУ ПОМОЧЬ</h4>
+    
+    <div class="service-item" style="text-align: left; margin-bottom: 15px; padding: 15px; border-radius: 15px; background: rgba(0,0,0,0.02); transition: 0.3s;">
+        <span style="font-size: 1.5rem;">💻</span>
+        <strong style="margin-left: 10px;">Сайт-визитка</strong>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Сделаю стильный адаптивный сайт с 3D-эффектами, как этот.</p>
+    </div>
+
+    <div class="service-item" style="text-align: left; padding: 15px; border-radius: 15px; background: rgba(0,0,0,0.02); transition: 0.3s;">
+        <span style="font-size: 1.5rem;">📱</span>
+        <strong style="margin-left: 10px;">Верстка по дизайну</strong>
+        <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Перенесу твою идею из Figma в живой код за 1-2 дня.</p>
+    </div>
+</div>
+
     <h3>🧮 Калькулятор цели</h3>
     <p style="font-size: 0.8rem; margin-bottom: 15px;">Узнай, сколько копить в день на MacBook!</p>
     <input type="number" id="priceInput" placeholder="Цена MacBook (напр. 150000)">
@@ -236,6 +252,19 @@ document.addEventListener('mousedown', () => {
 });
 document.addEventListener('mouseup', () => {
     follower.style.transform += ' scale(1)';
+});
+// Когда наводим на ссылку или кнопку — курсор увеличивается
+const links = document.querySelectorAll('a, button, .service-item');
+
+links.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+        follower.style.transform = 'scale(2)';
+        follower.style.background = 'rgba(230, 57, 70, 0.2)';
+    });
+    link.addEventListener('mouseleave', () => {
+        follower.style.transform = 'scale(1)';
+        follower.style.background = 'rgba(230, 57, 70, 0.1)';
+    });
 });
 
 
