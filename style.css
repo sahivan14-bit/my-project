@@ -83,3 +83,29 @@ body {
 .progress-fill.html { background: linear-gradient(90deg, #e63946, #ff4d6d); }
 .progress-fill.css { background: linear-gradient(90deg, #457b9d, #a8dadc); }
 .progress-fill.js { background: linear-gradient(90deg, #f1faee, #ffd700); }
+/* РАМКА ДЛЯ ВНУТРЕННИХ БЛОКОВ */
+.inner-block {
+    border: 1px solid rgba(230, 57, 70, 0.2); /* Тонкая красная рамка */
+    padding: 20px;
+    border-radius: 25px;
+    margin: 15px 0;
+    background: rgba(255, 255, 255, 0.5); /* Эффект стекла */
+    transition: 0.3s;
+}
+
+.inner-block:hover {
+    border-color: #e63946;
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.1);
+}
+
+/* ЦВЕТНЫЕ ПОЛОСКИ НАВЫКОВ */
+.progress-bg { 
+    width: 100%; background: #eee; border-radius: 10px; height: 8px; margin: 8px 0; overflow: hidden; 
+}
+
+.progress-fill { height: 100%; transition: width 1.5s ease-in-out; }
+
+/* Присваиваем цвета */
+.html { background: linear-gradient(90deg, #e63946, #ff4d6d); }
+.css { background: linear-gradient(90deg, #457b9d, #a8dadc); }
+.js { background: linear-gradient(90deg, #f1c40f, #f39c12); }
