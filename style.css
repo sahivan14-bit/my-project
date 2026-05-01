@@ -401,9 +401,22 @@ body {
     white-space: nowrap; /* Запрещаем перенос заголовка услуги */
 }
 
-.service-item p {
-    margin-top: 5px;
-    line-height: 1.4; /* Чтобы текст читался легче */
+.service-item strong {
+    font-size: 1.1rem;
+    display: block; /* Даем заголовку свою строку */
+    margin-bottom: 5px;
+    color: #1d3557;
+    /* Убираем nowrap, чтобы текст мог переноситься, если места мало */
+    white-space: normal; 
 }
+
+.service-item {
+    display: flex;
+    flex-direction: column; /* Ставим иконку сверху, а текст под ней — так влезет всё! */
+    align-items: flex-start;
+    padding: 20px !important;
+    gap: 10px;
+}
+
 
 

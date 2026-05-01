@@ -266,6 +266,23 @@ links.forEach(link => {
         follower.style.background = 'rgba(230, 57, 70, 0.1)';
     });
 });
+const services = document.querySelectorAll('.service-item');
+
+services.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        item.style.background = 'rgba(230, 57, 70, 0.05)';
+        item.style.transform = 'translateX(10px)'; // Карточка чуть сдвигается вправо
+        follower.style.transform = 'scale(2.5)'; // Курсор раздувается
+        follower.style.borderColor = '#457b9d'; // Меняет цвет на синий
+    });
+    
+    item.addEventListener('mouseleave', () => {
+        item.style.background = 'rgba(0,0,0,0.02)';
+        item.style.transform = 'translateX(0)';
+        follower.style.transform = 'scale(1)';
+        follower.style.borderColor = '#e63946'; // Возвращаем красный
+    });
+});
 
 
     </script>
