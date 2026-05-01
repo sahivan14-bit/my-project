@@ -54,17 +54,17 @@
     </div>
 
     <script>
-        // Ждем полной загрузки страницы
-window.onload = function() {
+        window.onload = function() {
     const cards = document.querySelectorAll('.card');
     const cursor = document.querySelector('.cursor');
     const follower = document.querySelector('.cursor-follower');
 
-    document.addEventListener('mousemove', (e) => {
+    // Функция для движения
+    function handleMove(e) {
         const x = e.clientX;
         const y = e.clientY;
 
-        // Движение курсора
+        // Курсор
         if (cursor && follower) {
             cursor.style.left = x + 'px';
             cursor.style.top = y + 'px';
@@ -72,39 +72,36 @@ window.onload = function() {
             follower.style.top = y + 'px';
         }
 
-        // ЖИВОЙ ЭФФЕКТ (3D TILT)
+        // ЖЕСТКИЙ ТИЛТ (наклон)
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
-            
-            // Центр карточки
-            const cardCenterX = rect.left + rect.width / 2;
-            const cardCenterY = rect.top + rect.height / 2;
+            const cardX = rect.left + rect.width / 2;
+            const cardY = rect.top + rect.height / 2;
 
-            // Насколько далеко мышка от центра (делим на 8 для ЖЕСТКОГО наклона)
-            const rotateX = -(y - cardCenterY) / 8; 
-            const rotateY = (x - cardCenterX) / 8;
+            // Делим на 10 для мощного наклона
+            const rotX = -(y - cardY) / 10;
+            const rotY = (x - cardX) / 10;
 
-            // Применяем наклон + небольшое смещение в сторону мыши
-            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(10px)`;
         });
-    });
+    }
 
-    // Плавный возврат, когда мышка уходит
+    // Слушаем движение мыши по ВСЕМУ экрану
+    document.addEventListener('mousemove', handleMove);
+
+    // Сброс при уходе мыши
     document.addEventListener('mouseleave', () => {
         cards.forEach(card => {
-            card.style.transition = "transform 0.5s ease-out";
-            card.style.transform = "rotateX(0deg) rotateY(0deg) translateZ(0px)";
+            card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)";
         });
     });
 };
 
-// Твой калькулятор
 function calculate() {
     const val = document.getElementById('goalInput').value;
     const res = document.getElementById('calcResult');
     if(val) res.innerText = "Нужно откладывать: " + Math.round(val/730) + " руб/день";
 }
-
 
     </script>
 </body>
