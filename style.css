@@ -1,184 +1,55 @@
-/* ОБЩИЙ СТИЛЬ САЙТА */
-/* Общий контейнер для правильного 3D */
+/* ЯРКИЙ ФОН */
 body {
-    perspective: 1500px; 
-    overflow-x: hidden;
+    background: linear-gradient(135deg, #e63946 0%, #457b9d 100%) !important;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    cursor: none !important;
 }
 
+/* КОНТЕЙНЕР (ЦЕНТРИРОВКА) */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    width: 100%;
+}
+
+/* ОБЪЕМНЫЕ КАРТОЧКИ */
 .card {
     background: white;
-    padding: 35px;
-    border-radius: 35px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
     margin-bottom: 50px;
     width: 100%;
     max-width: 400px;
     text-align: center;
-    
-    /* Убираем всё, что может блокировать JS */
-    transform-style: preserve-3d !important;
-    transition: transform 0.1s ease-out !important; /* Очень короткий переход */
+    /* ПОДГОТОВКА К 3D */
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
     will-change: transform;
 }
-
-/* Мопс теперь будет крутиться плавно и не мешать 3D */
-.avatar img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 6px solid #fff;
-    animation: rotateFull 20s linear infinite;
-}
-
-@keyframes rotateFull {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-
-/* Делаем кнопку "Написать мне" сочной */
-.btn-send {
-    background: linear-gradient(45deg, #e63946, #ff4d6d);
-    box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4);
-    border: none;
-    color: white;
-    padding: 18px;
-    border-radius: 20px;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-
-/* Анимация вращения для мопса (плавное покачивание) */
-.avatar img {
-    width: 170px;
-    height: 170px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 6px solid #fff;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: 0.5s;
-    animation: slowRotate 10s linear infinite; /* Он будет медленно крутиться сам */
-}
-
-@keyframes slowRotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-/* При наведении мопс замирает и увеличивается */
-.avatar img:hover {
-    animation-play-state: paused;
-    transform: scale(1.1);
-}
-
-
 
 /* КРУГЛЫЙ МОПС */
 .avatar img {
     width: 160px;
     height: 160px;
-    border-radius: 50%; /* Делаем круглым */
+    border-radius: 50%;
     object-fit: cover;
     border: 6px solid #fff;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* КУРСОР И ИСКОРКИ */
-.cursor { position: fixed; width: 8px; height: 8px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
-.cursor-follower { position: fixed; width: 30px; height: 30px; border: 2px solid #e63946; border-radius: 50%; pointer-events: none; z-index: 9999; transition: transform 0.1s; transform: translate(-50%, -50%); }
-.particle { position: fixed; width: 6px; height: 6px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10001; transition: 0.6s ease-out; }
-
-/* ПОЛОСКИ НАВЫКОВ */
-.progress-bg { width: 100%; background: #f1f1f1; border-radius: 10px; height: 10px; overflow: hidden; margin: 10px 0; }
-.progress-fill { height: 100%; background: #457b9d; transition: width 1.5s ease-in-out; }
-
-/* УСЛУГИ */
-.service-item {
-    background: #fdfdfd;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 15px;
-    text-align: left;
-    border: 1px solid #f0f0f0;
-    transition: 0.3s;
+/* КУРСОР */
+.cursor, .cursor-follower {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
-.service-item:hover { transform: translateX(10px); border-color: #e63946; }
-
-/* КНОПКИ */
-.btn-send {
-    background: #e63946;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    width: 100%;
-    cursor: none;
-    transition: 0.3s;
-    text-decoration: none;
-    display: inline-block;
-}
-.btn-send:hover { background: #1d3557; transform: scale(1.05); }
-
-/* ЗОЛОТАЯ КАРТОЧКА ПРОЕКТА */
-.gold-project {
-    border: 2px solid #ffd700;
-    padding: 20px;
-    border-radius: 25px;
-    background: linear-gradient(to bottom, #fff, #fff9e6);
-}
-/* Общая анимация появления */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card {
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* Делаем задержку для каждого блока, чтобы они выходили по очереди */
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.4s; }
-.card:nth-child(4) { animation-delay: 0.6s; }
-/* Пульсация кнопки */
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4); }
-    50% { transform: scale(1.05); box-shadow: 0 15px 30px rgba(230, 57, 70, 0.6); }
-    100% { transform: scale(1); box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4); }
-}
-
-/* Эффект яростной вибрации */
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    20% { transform: translate(-1px, -2px) rotate(-1deg); }
-    40% { transform: translate(-3px, 0px) rotate(1deg); }
-    60% { transform: translate(3px, 2px) rotate(0deg); }
-    80% { transform: translate(1px, -1px) rotate(1deg); }
-    100% { transform: translate(-1px, 2px) rotate(-1deg); }
-}
-
-.btn-send {
-    animation: pulse 2s infinite; /* Постоянная пульсация */
-}
-
-.btn-send:hover {
-    animation: shake 0.3s infinite !important; /* Вибрация при наведении */
-    background: #1d3557;
-}
-.card {
-    /* ... твои старые стили ... */
-    transition: transform 0.1s ease-out; /* Короткое время для отклика */
-    transform-style: preserve-3d;
-    will-change: transform;
-}
+.cursor { width: 8px; height: 8px; background: #e63946; }
+.cursor-follower { width: 30px; height: 30px; border: 2px solid #e63946; transition: 0.1s; }
