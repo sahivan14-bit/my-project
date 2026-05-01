@@ -22,11 +22,13 @@ body {
     margin-bottom: 50px;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     .card {
-    /* ... твои старые стили ... */
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease-out; /* Очень быстрый отклик на мышь */
+    /* ... твои старые стили (background, padding и т.д.) ... */
+    transition: transform 0.1s ease-out !important; /* Очень быстрый отклик */
+    transform-style: preserve-3d !important;
+    perspective: 1000px !important;
     will-change: transform;
 }
+
 
 }
 
