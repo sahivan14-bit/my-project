@@ -417,6 +417,20 @@ body {
     padding: 20px !important;
     gap: 10px;
 }
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    
+    /* ВОТ ЭТО ГЛАВНОЕ: */
+    margin-bottom: 40px !important; /* Расстояние между карточками */
+    
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 10;
+}
 
 
 
