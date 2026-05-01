@@ -64,3 +64,22 @@ body {
 /* КУРСОР */
 .cursor { position: fixed; width: 8px; height: 8px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
 .cursor-follower { position: fixed; width: 35px; height: 35px; border: 2px solid #e63946; border-radius: 50%; pointer-events: none; z-index: 9999; transition: 0.15s; transform: translate(-50%, -50%); }
+/* КРАСИВАЯ РАМКА ДЛЯ ВСЕХ ВНУТРЕННИХ БЛОКОВ */
+.inner-block {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    border-radius: 25px;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+}
+
+.inner-block:hover {
+    border-color: #e63946;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* ЦВЕТА ДЛЯ ПОЛОСОК НАВЫКОВ */
+.progress-fill.html { background: linear-gradient(90deg, #e63946, #ff4d6d); }
+.progress-fill.css { background: linear-gradient(90deg, #457b9d, #a8dadc); }
+.progress-fill.js { background: linear-gradient(90deg, #f1faee, #ffd700); }
