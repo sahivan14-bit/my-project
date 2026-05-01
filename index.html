@@ -102,6 +102,32 @@ document.querySelectorAll('.card').forEach(item => {
         }, 800);
     });
 });
+// Эффект слежения карточек за курсором (3D Tilt)
+document.addEventListener('mousemove', (e) => {
+    const cards = document.querySelectorAll('.card');
+    const x = e.clientX;
+    const y = e.clientY;
+
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        const cardX = rect.left + rect.width / 2;
+        const cardY = rect.top + rect.height / 2;
+
+        // Вычисляем угол наклона (чем дальше курсор, тем сильнее наклон)
+        const angleX = (cardY - y) / 25; 
+        const angleY = (x - cardX) / 25;
+
+        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+    });
+});
+
+// Возвращаем в ровное положение, когда курсор уходит
+document.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.card').forEach(card => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+    });
+});
+
 
     </script>
 </body>
