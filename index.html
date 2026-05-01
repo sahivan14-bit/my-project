@@ -1,38 +1,25 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahivan-14 | Путь к успеху</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <!-- Курсор -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-<div class="container">
+<!-- Твой курсор -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
 
-    <!-- БЛОК 1: ВИЗИТКА -->
-    <div class="container">
-    <!-- БЛОК 1: ТЫ И ТВОИ СКИЛЛЫ -->
+<div class="container">
+    
+    <!-- КАРТОЧКА 1: ВИЗИТКА И НАВЫКИ -->
     <div class="card">
-        <div class="avatar"><img src="png.jpg"></div>
+        <div class="avatar"><img src="png.jpg" alt="Мопс"></div>
         <h1 style="font-size: 1.4rem; color: #1d3557; margin-top: 15px;">ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
         <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px;">Будущий Fullstack-разработчик.</p>
         <a href="https://t.me" class="btn-send">Написать мне</a>
 
         <div class="inner-block">
-            <h4 style="color: #457b9d; font-size: 0.9rem; margin-bottom: 10px;">МОИ НАВЫКИ</h4>
+            <h4 style="color: #457b9d; font-size: 0.8rem; margin-bottom: 10px;">МОИ НАВЫКИ</h4>
             <div class="progress-bg"><div class="progress-fill html" style="width: 90%;"></div></div>
             <div class="progress-bg"><div class="progress-fill css" style="width: 80%;"></div></div>
             <div class="progress-bg"><div class="progress-fill js" style="width: 40%;"></div></div>
         </div>
     </div>
-</div>
-<div class="container">
-</div>
 
-    <!-- БЛОК 2: БИЗНЕС -->
+    <!-- КАРТОЧКА 2: БИЗНЕС И УСЛУГИ -->
     <div class="card">
         <div class="inner-block">
             <h4 style="color: #457b9d; margin-bottom: 15px;">УСЛУГИ</h4>
@@ -41,78 +28,59 @@
         </div>
 
         <div class="inner-block" style="margin-top: 20px;">
-            <h4 style="color: #457b9d;">🧮 КАЛЬКУЛЯТОР</h4>
-            <input type="number" id="goalInput" placeholder="Цена мечты" style="width:100%; padding:10px; border-radius:10px; border:1px solid #ddd; outline:none;">
+            <h4 style="color: #457b9d;">🧮 КАЛЬКУЛЯТОР ЦЕЛИ</h4>
+            <input type="number" id="goalInput" placeholder="Цена мечты" style="width:100%; padding:10px; border-radius:10px; border:1px solid #ddd; outline:none; box-sizing: border-box;">
             <button onclick="calculate()" class="btn-send" style="margin-top:10px;">Рассчитать</button>
-            <p id="calcResult" style="margin-top:10px; font-size:0.9rem; font-weight:bold;"></p>
+            <p id="calcResult" style="margin-top:10px; font-size:0.85rem; font-weight:bold; color:#1d3557;"></p>
         </div>
     </div>
 
-
-    <!-- БЛОК 3: МЕЧТА -->
-     <div class="inner-block" style="border: 2px solid #ffd700; background: linear-gradient(to bottom, #fff, #fff9e6);">
+    <!-- КАРТОЧКА 3: ТВОИ ЦЕЛИ И ПОРТФОЛИО -->
+    <div class="card">
+        <h3 style="color: #1d3557; margin-bottom: 10px;">ПУТЬ К 16 ГОДАМ</h3>
+        <p style="font-size: 0.85rem; font-weight: bold;">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
+        
+        <div class="inner-block" style="border: 2px solid #ffd700; background: linear-gradient(to bottom, #fff, #fff9e6); margin-top: 20px;">
             <div style="font-size: 2rem;">🐶</div>
             <h5>GOLD PROJECT: Portfolio</h5>
-            <p style="font-size: 0.7rem; color: #666;">Мой первый серьезный проект.</p>
+            <p style="font-size: 0.75rem; color: #666;">Мой первый серьезный проект в сети.</p>
         </div>
     </div>
-        
-   
-   
-    <p style="margin-top:30px; font-size:0.7rem; color:#999;">Разработано Ваней (Sahivan-14) © 2026</p>
-    </div>
 
-    <script>
-        const c = document.querySelector('.cursor');
-        const f = document.querySelector('.cursor-follower');
-        const cards = document.querySelectorAll('.card');
+</div>
 
-        document.addEventListener('mousemove', e => {
-    const x = e.clientX;
-    const y = e.clientY;
+<script>
+    const c = document.querySelector('.cursor');
+    const f = document.querySelector('.cursor-follower');
+    const cards = document.querySelectorAll('.card');
 
-    // 1. Движение курсора (всегда активно)
-    c.style.left = f.style.left = x + 'px';
-    c.style.top = f.style.top = y + 'px';
+    document.addEventListener('mousemove', e => {
+        const x = e.clientX;
+        const y = e.clientY;
 
-    // 2. Движение карточек (ТОЛЬКО при наведении)
-    cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        
-        // ПРОВЕРКА: находится ли мышка ВНУТРИ границ карточки
-        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-            // Если мышка НАД карточкой — наклоняем её
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
+        // 1. Плавный курсор
+        c.style.left = f.style.left = x + 'px';
+        c.style.top = f.style.top = y + 'px';
 
-            const rotX = -(y - centerY) / 40; // Чувствительность
-            const rotY = (x - centerX) / 40;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
-        } else {
-            // Если мышка ВНЕ карточки — возвращаем её в идеально ровное состояние
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-        }
-    });
-});
-а
-        // 3. Искорки при клике
-        document.addEventListener('click', e => {
-            for(let i=0; i<8; i++){
-                const p = document.createElement('div');
-                p.className = 'particle';
-                document.body.appendChild(p);
-                p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
-                const dX = (Math.random()-0.5)*200, dY = (Math.random()-0.5)*200;
-                setTimeout(() => { p.style.transform = `translate(${dX}px, ${dY}px) scale(0)`; p.style.opacity = 0; }, 10);
-                setTimeout(() => p.remove(), 600);
+        // 2. 3D наклон ТОЛЬКО ПРИ НАВЕДЕНИИ
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                // Мягкий наклон (делим на 35)
+                const rotX = -(y - centerY) / 35;
+                const rotY = (x - centerX) / 35;
+                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+            } else {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
             }
         });
+    });
 
-        function calc() {
-            const val = document.getElementById('goal').value;
-            if(val) document.getElementById('res').innerText = "Нужно копить по " + Math.round(val/730) + " руб/день";
-        }
-    </script>
-</body>
-</html>
+    function calculate() {
+        const val = document.getElementById('goalInput').value;
+        const res = document.getElementById('calcResult');
+        if(val) res.innerText = "Нужно откладывать всего " + Math.round(val/730) + " руб/день!";
+    }
+</script>
