@@ -1,61 +1,66 @@
-/* ЯРКИЙ ФОН */
 body {
-    background: linear-gradient(135deg, #e63946 0%, #457b9d 100%) !important;
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    cursor: none !important;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important; /* Глубокий темный фон для контраста */
+    margin: 0; font-family: 'Segoe UI', sans-serif;
+    display: flex; justify-content: center;
+    cursor: none !important; overflow-x: hidden;
 }
 
-/* КОНТЕЙНЕР (ЦЕНТРИРОВКА) */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px 20px;
-    width: 100%;
-}
+.container { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; width: 100%; }
 
-/* ОБЪЕМНЫЕ КАРТОЧКИ */
-/* Общий стиль всех карточек */
+/* КАРТОЧКИ КАК У ТОП-КОМПАНИЙ */
 .card {
-    background: white;
-    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 45px 30px;
     border-radius: 40px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     margin-bottom: 50px;
     width: 100%;
-    max-width: 340px; /* УМЕНЬШАЕМ ШИРИНУ, чтобы карточка стала вытянутой */
+    max-width: 340px;
     text-align: center;
-    transition: transform 0.4s ease-out; /* Плавность для возврата на место */
+    position: relative;
     transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+    /* ТОНКАЯ РАМКА */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-/* Удлиняем первую карточку за счет отступов */
-.card:first-of-type {
-    padding-top: 60px;
-    padding-bottom: 60px;
+/* СВЕЧЕНИЕ РАМКИ ПРИ НАВЕДЕНИИ */
+.card:hover {
+    border: 1px solid #e63946;
+    box-shadow: 0 0 30px rgba(230, 57, 70, 0.3);
 }
 
-/* Мопс чуть меньше и аккуратнее */
+/* КРУТАЯ КНОПКА (КОТОРУЮ МЫ ВЕРНУЛИ) */
+.btn-send {
+    background: linear-gradient(45deg, #e63946, #ff4d6d);
+    color: white !important;
+    padding: 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    margin: 20px 0;
+    transition: 0.3s;
+    border: none;
+    box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4);
+    cursor: none;
+}
+
+.btn-send:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(230, 57, 70, 0.6);
+}
+
+/* МОПС В РАМКЕ */
 .avatar img {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 4px solid #e63946;
+    padding: 5px; background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
-
 
 /* КУРСОР */
-.cursor, .cursor-follower {
-    position: fixed;
-    pointer-events: none;
-    z-index: 10000;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-}
-.cursor { width: 8px; height: 8px; background: #e63946; }
-.cursor-follower { width: 30px; height: 30px; border: 2px solid #e63946; transition: 0.1s; }
+.cursor { position: fixed; width: 8px; height: 8px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+.cursor-follower { position: fixed; width: 35px; height: 35px; border: 2px solid #e63946; border-radius: 50%; pointer-events: none; z-index: 9999; transition: 0.15s; transform: translate(-50%, -50%); }
