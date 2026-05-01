@@ -62,26 +62,34 @@
         const cards = document.querySelectorAll('.card');
 
         document.addEventListener('mousemove', e => {
-            const x = e.clientX;
-            const y = e.clientY;
+    const x = e.clientX;
+    const y = e.clientY;
 
-            // 1. Движение курсора
-            c.style.left = f.style.left = x + 'px';
-            c.style.top = f.style.top = y + 'px';
+    // 1. Движение курсора (всегда активно)
+    c.style.left = f.style.left = x + 'px';
+    c.style.top = f.style.top = y + 'px';
 
-            // 2. Аккуратное 3D при наведении
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                    const rotX = -(y - (rect.top + rect.height/2)) / 25;
-                    const rotY = (x - (rect.left + rect.width/2)) / 25;
-                    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-                } else {
-                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-                }
-            });
-        });
+    // 2. Движение карточек (ТОЛЬКО при наведении)
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        
+        // ПРОВЕРКА: находится ли мышка ВНУТРИ границ карточки
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            // Если мышка НАД карточкой — наклоняем её
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
 
+            const rotX = -(y - centerY) / 15; // Чувствительность
+            const rotY = (x - centerX) / 15;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+        } else {
+            // Если мышка ВНЕ карточки — возвращаем её в идеально ровное состояние
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+        }
+    });
+});
+а
         // 3. Искорки при клике
         document.addEventListener('click', e => {
             for(let i=0; i<8; i++){
