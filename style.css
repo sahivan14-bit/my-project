@@ -193,3 +193,44 @@ body {
     margin-right: 8px;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
+/* СТИЛЬ РАЗДЕЛИТЕЛЯ */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    opacity: 0.5;
+}
+
+.divider-line {
+    height: 1px;
+    flex-grow: 1;
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+}
+
+.divider-icon {
+    margin: 0 15px;
+    font-size: 0.8rem;
+    filter: drop-shadow(0 0 5px #ff416c);
+}
+
+/* ОЖИВЛЯЕМ ИКОНКИ */
+.icon {
+    display: inline-block;
+    animation: icon-float 3s infinite ease-in-out;
+}
+
+@keyframes icon-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* ДОБАВЛЯЕМ "ГЛУБИНУ" КАРТОЧКЕ */
+.card {
+    background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%) !important;
+}
+
+/* УБИРАЕМ ЛИШНИЕ ОТСТУПЫ */
+.inner-block {
+    margin-top: 10px !important; /* Делаем блоки ближе друг к другу */
+}
