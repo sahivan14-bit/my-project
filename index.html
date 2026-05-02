@@ -57,37 +57,32 @@
     </div>
 </div>
 
-<!-- РАЗДЕЛИТЕЛЬ -->
-<div class="divider">
-    <span class="divider-line"></span>
+<!-- ТВОЙ РАЗДЕЛИТЕЛЬ С ТЕМНОЙ МОЛНИЕЙ -->
+<div class="divider dark-divider">
+    <span class="divider-line dark-line"></span>
     <span class="divider-icon">⚡</span>
-    <span class="divider-line"></span>
+    <span class="divider-line dark-line"></span>
 </div>
 
-    <!-- КАЛЬКУЛЯТОР -->
-    <div class="inner-block calc-capsule">
+<!-- КАРТОЧКА КАЛЬКУЛЯТОРА -->
+<div class="card reveal solid-calc">
+    <div class="inner-block">
         <h4 class="block-label">🧮 КАЛЬКУЛЯТОР</h4>
-        <input type="number" id="inp" placeholder="Цена мечты" class="main-input">
-        
-        <!-- Маленькая кнопка с бликом -->
+        <input type="number" id="inp" placeholder="Цена мечты" class="main-input solid-input">
         <button onclick="calc()" class="btn-send shine-btn small-btn">Рассчитать</button>
-        
         <p id="res" class="calc-res"></p>
     </div>
 </div>
 
-
-        <!-- БЛОК 3: ПОРТФОЛИО -->
-        <div class="card reveal">
-            <h3 class="title">ПУТЬ К 16 ГОДАМ</h3>
-            <p class="goal-text">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
-            <div class="inner-block gold-border">
-                <div class="emoji-icon">🐶</div>
-                <h5>GOLD PROJECT: Portfolio</h5>
-                <a href="https://github.com" target="_blank" class="btn-send secondary-btn">GitHub</a>
-            </div>
-        </div>
+<!-- ПОРТФОЛИО (БЕЗ РАСТЯГИВАНИЯ) -->
+<div class="card reveal portfolio-card">
+    <h3 class="title">ПУТЬ К 16 ГОДАМ</h3>
+    <p class="goal-text">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
+    <div class="inner-block gold-border">
+        <h5>GOLD PROJECT: Portfolio</h5>
+        <a href="https://github.com" target="_blank" class="btn-send secondary-btn">GitHub</a>
     </div>
+</div>
 
     <script src="script.js"></script>
 </body>
