@@ -84,59 +84,73 @@
 
 <script>
    
-window.addEventListener('load', function() {
-    const cards = document.querySelectorAll('.card');
+
+    // 1. Создаем переменные сразу
     const c = document.querySelector('.cursor');
     const f = document.querySelector('.cursor-follower');
+    const cards = document.querySelectorAll('.card');
 
-    // 1. АНИМАЦИЯ ЦИФР И ПОЛОСОК (сразу при загрузке)
-    const stats = document.querySelectorAll('.stat-number');
-    const bars = document.querySelectorAll('.progress-fill');
-    
-    stats.forEach((stat, i) => {
-        const target = parseInt(stat.getAttribute('data-target'));
-        let count = 0;
-        const timer = setInterval(() => {
-            count++;
-            stat.innerText = count;
-            if (count >= target) clearInterval(timer);
-        }, 20);
-        if(bars[i]) {
-            bars[i].style.width = target + '%';
-            bars[i].style.transition = 'width 2s ease-out';
-        }
-    });
-
-    // 2. КУРСОР И 3D-НАКЛОН
+    // 2. Движение мыши (Главный двигатель)
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX;
         const y = e.clientY;
-        
-        if(c && f) {
-            c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            f.style.transform = `translate3d(${x - 11}px, ${y - 11}px, 0)`;
+
+        // Двигаем курсор
+        if (c && f) {
+            c.style.left = x + 'px';
+            c.style.top = y + 'px';
+            f.style.left = x + 'px';
+            f.style.top = y + 'px';
         }
 
+        // ЖЕСТКИЙ 3D НАКЛОН
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
+            
+            // Если мышка НАД карточкой
             if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                const rotX = (centerY - y) / 15; // Сделал наклон сильнее, чтобы ты его УВИДЕЛ
-                const rotY = (x - centerX) / 15;
+
+                // Наклон (делим на 10 для СИЛЬНОГО эффекта, потом поправим)
+                const rotX = -(y - centerY) / 10;
+                const rotY = (x - centerX) / 10;
+
                 card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+                card.style.zIndex = "100"; // Вытаскиваем на передний план
             } else {
+                // Плавный возврат
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                card.style.zIndex = "1";
             }
         });
     });
-});
 
-function calculate() {
-    const val = document.getElementById('goalInput').value;
-    const res = document.getElementById('calcResult');
-    if(val && res) res.innerText = "Нужно по " + Math.round(val/730) + " руб/день!";
-}
+    // 3. Анимация навыков (запускается один раз при загрузке)
+    window.addEventListener('load', () => {
+        document.querySelectorAll('.stat-number').forEach((stat, i) => {
+            const target = +stat.getAttribute('data-target');
+            let count = 0;
+            const timer = setInterval(() => {
+                stat.innerText = count;
+                if (count >= target) clearInterval(timer);
+                count++;
+            }, 20);
+            
+            const bars = document.querySelectorAll('.progress-fill');
+            if(bars[i]) {
+                bars[i].style.width = target + '%';
+                bars[i].style.transition = 'width 2s ease-out';
+            }
+        });
+    });
+
+    function calculate() {
+        const val = document.getElementById('goalInput').value;
+        const res = document.getElementById('calcResult');
+        if(val && res) res.innerText = "Нужно по " + Math.round(val/730) + " руб/день!";
+    }
+
 
 
 </script>
