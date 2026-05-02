@@ -10,7 +10,6 @@
     <div class="floating-icons">
     <!-- Смайлики будут создаваться автоматически через JavaScript -->
 </div>
-
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
@@ -195,31 +194,35 @@ function createParticle(x, y) {
     setTimeout(() => { p.style.transform = `translate(${dX}px, ${dY}px) scale(0)`; p.style.opacity = 0; }, 10);
     setTimeout(() => p.remove(), 1000);
 }
-// Функция для создания фоновых смайликов
+
 function createBgEmoji() {
-    const emojis = ['🐶', '🏠', '🏎️', '💻', '💰'];
+    const container = document.querySelector('.floating-icons');
+    if (!container) return; // Если контейнера нет, выходим, чтобы не было ошибки
+
+    const emojis = ['🐶', '🏠', '🏎️', '💻', '💰', '🔥'];
     const emoji = document.createElement('div');
     emoji.className = 'bg-emoji';
     
-    // Выбираем случайный символ
     emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-    
-    // Случайная позиция по горизонтали
     emoji.style.left = Math.random() * 100 + 'vw';
     
-    // Случайный размер и скорость
     const size = Math.random() * (3 - 1) + 1;
     emoji.style.fontSize = size + 'rem';
-    emoji.style.animationDuration = Math.random() * (20 - 10) + 10 + 's';
     
-    document.querySelector('.floating-icons').appendChild(emoji);
+    // Случайная скорость взлета
+    const duration = Math.random() * (20 - 10) + 10;
+    emoji.style.animation = `float-bg ${duration}s linear infinite`;
     
-    // Удаляем, чтобы не грузить память
-    setTimeout(() => emoji.remove(), 20000);
+    container.appendChild(emoji);
+    
+    // Удаляем через 20 секунд, чтобы сайт не тормозил
+    setTimeout(() => { emoji.remove(); }, 20000);
 }
 
-// Запускаем поток смайликов
-setInterval(createBgEmoji, 2000);
+// Запускаем через секунду после загрузки, чтобы всё успело появиться
+setTimeout(() => {
+    setInterval(createBgEmoji, 2000);
+}, 1000);
 
 </script>
 </body>
