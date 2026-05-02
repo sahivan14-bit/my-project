@@ -25,7 +25,12 @@ body {
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
     border: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 1; /* Карточка на первом слое */
+    pointer-events: auto !important;
 }
+ 
+
 
 
 
@@ -87,6 +92,7 @@ body {
     border: 2px solid #e63946;
     background: rgba(230, 57, 70, 0.1);
     transition: transform 0.1s ease-out; /* Плавность только для круга */
+    z-index: 999999 !important;
 }
 
 @keyframes buttonPulse {
