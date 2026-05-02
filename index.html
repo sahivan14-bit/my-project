@@ -41,18 +41,28 @@
 
 
         <!-- БЛОК 2: БИЗНЕС -->
-        <div class="card reveal">
-            <div class="inner-block">
-                <h4 class="block-label">УСЛУГИ</h4>
-                <p class="service-text">💻 3D Сайт-визитка<br>📱 Верстка под ключ</p>
-            </div>
-            <div class="inner-block">
-                <h4 class="block-label">КАЛЬКУЛЯТОР</h4>
-                <input type="number" id="inp" placeholder="Цена мечты" class="main-input">
-                <button onclick="calc()" class="btn-send" style="width: 100%; border: none;">Рассчитать</button>
-                <p id="res" class="calc-res"></p>
-            </div>
-        </div>
+        <div class="card reveal aura-effect"> <!-- Добавили класс для свечения -->
+    <!-- УСЛУГИ -->
+    <div class="inner-block service-capsule">
+        <h4 class="block-label">УСЛУГИ</h4>
+        <p class="service-text">
+            <span class="icon">💻</span> 3D Сайт-визитка<br>
+            <span class="icon">📱</span> Верстка под ключ
+        </p>
+    </div>
+
+    <!-- КАЛЬКУЛЯТОР -->
+    <div class="inner-block calc-capsule">
+        <h4 class="block-label">🧮 КАЛЬКУЛЯТОР</h4>
+        <input type="number" id="inp" placeholder="Цена мечты" class="main-input">
+        
+        <!-- Маленькая кнопка с бликом -->
+        <button onclick="calc()" class="btn-send shine-btn small-btn">Рассчитать</button>
+        
+        <p id="res" class="calc-res"></p>
+    </div>
+</div>
+
 
         <!-- БЛОК 3: ПОРТФОЛИО -->
         <div class="card reveal">
