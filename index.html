@@ -4,157 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sahivan-14 | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ВЕСЬ CSS ТЕПЕРЬ ТУТ */
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            margin: 0; font-family: 'Segoe UI', sans-serif;
+            display: flex; justify-content: center;
+            cursor: none; overflow-x: hidden; min-height: 100vh;
+        }
+        .container { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; width: 100%; }
+        .card {
+            background: white; padding: 40px; border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            margin-bottom: 60px; width: 100%; max-width: 340px;
+            text-align: center; position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            z-index: 1;
+        }
+        .avatar img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 5px solid white; }
+        .inner-block { border: 1px solid rgba(230, 57, 70, 0.2); padding: 20px; border-radius: 25px; margin-top: 20px; }
+        .progress-bg { width: 100%; background: #eee; border-radius: 10px; height: 8px; margin: 8px 0; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0; transition: width 2s ease-out; background: #e63946; }
+        .cursor, .cursor-follower { position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+        .cursor { width: 8px; height: 8px; background: #e63946; }
+        .cursor-follower { width: 35px; height: 35px; border: 2px solid #e63946; transition: 0.1s; }
+        .btn-send { background: #e63946; color: white !important; padding: 15px; border-radius: 20px; text-decoration: none; display: block; margin-top: 15px; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <!-- Твой кастомный курсор -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <div class="container">
-        <!-- БЛОК 1: ТЫ И НАВЫКИ -->
-        <div class="card reveal">
-            <div class="avatar"><img src="png.jpg" alt="Мопс"></div>
-            <h1 style="font-size: 1.4rem; color: #1d3557; margin-top: 15px;">ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
-            <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px;">Будущий Fullstack-разработчик.</p>
-            <a href="https://t.me/sxlwwx" class="btn-send" style="text-decoration:none;">Написать мне</a>
-      
+        <div class="card">
+            <div class="avatar"><img src="png.jpg"></div>
+            <h1>ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
+            <a href="https://t.me" class="btn-send">Написать мне</a>
             <div class="inner-block">
-    <h4 style="color: #457b9d; font-size: 0.9rem; margin-bottom: 10px;">МОИ НАВЫКИ</h4>
-    
-    <p style="font-size: 0.7rem; font-weight: bold; margin-bottom: 2px;">
-        HTML - <span class="stat-number" data-target="90">0</span>%
-    </p>
-    <div class="progress-bg"><div class="progress-fill html" style="width: 0%;"></div></div>
-    
-    <p style="font-size: 0.7rem; font-weight: bold; margin: 8px 0 2px;">
-        CSS - <span class="stat-number" data-target="80">0</span>%
-    </p>
-<div class="progress-bg"><div class="progress-fill css" style="width: 0%;"></div></div>
+                <p style="font-size: 0.8rem; font-weight: bold;">HTML - <span class="num" data-target="90">0</span>%</p>
+                <div class="progress-bg"><div class="progress-fill" style="width: 0%"></div></div>
+                <p style="font-size: 0.8rem; font-weight: bold;">CSS - <span class="num" data-target="80">0</span>%</p>
+                <div class="progress-bg"><div class="progress-fill" style="width: 0%"></div></div>
+            </div>
+        </div>
 
-    <p style="font-size: 0.7rem; font-weight: bold; margin: 8px 0 2px;">
-        JavaScript - <span class="stat-number" data-target="40">0</span>%
-    </p>
-  <div class="progress-bg"><div class="progress-fill js" style="width: 0%; background: #f1c40f;"></div></div>
-
-   </div>
-</div>
-
-
-
-   
-
-
- 
- 
- <!-- БЛОК 2: УСЛУГИ И КАЛЬКУЛЯТОР -->
-        <div class="card reveal">
+        <div class="card">
             <div class="inner-block">
-                <h4 style="color: #457b9d; margin-bottom: 15px;">УСЛУГИ</h4>
-                <p style="text-align: left; font-size: 0.85rem;"><strong>💻 Сайт-визитка</strong><br>3D-дизайн и эффекты.</p>
-                <p style="text-align: left; font-size: 0.85rem; margin-top: 10px;"><strong>📱 Верстка</strong><br>Из Figma в живой код.</p>
+                <h4>УСЛУГИ</h4>
+                <p>3D Сайт-визитка</p>
             </div>
-
-            <div class="inner-block" style="margin-top: 20px;">
-                <h4 style="color: #457b9d;">🧮 КАЛЬКУЛЯТОР ЦЕЛИ</h4>
-                <input type="number" id="goalInput" placeholder="Цена мечты" style="width:100%; padding:10px; border-radius:10px; border:1px solid #ddd; outline:none; box-sizing: border-box;">
-                <button onclick="calculate()" class="btn-send" style="margin-top:10px; cursor:none;">Рассчитать</button>
-                <p id="calcResult" style="margin-top:10px; font-size:0.85rem; font-weight:bold; color:#1d3557;"></p>
+            <div class="inner-block">
+                <input type="number" id="goalInput" placeholder="Цена мечты" style="width:100%; padding:10px; border-radius:10px; border:1px solid #ddd; outline:none;">
+                <button onclick="calculate()" class="btn-send" style="border:none; width:100%;">Рассчитать</button>
+                <p id="calcResult" style="margin-top:15px; font-weight:bold;"></p>
             </div>
-</div>
-
-
-        <!-- БЛОК 3: ПУТЬ К 16 ГОДАМ -->
-      <div class="card reveal">
-    <h3 style="color: #1d3557; margin-bottom: 10px;">ПУТЬ К 16 ГОДАМ</h3>
-    <p style="font-size: 0.85rem; font-weight: bold;">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
-    
-    <!-- ЗОЛОТОЙ БЛОК -->
-    <div class="inner-block" style="border: 2px solid #ffd700; background: linear-gradient(to bottom, #fff, #fff9e6); margin-top: 20px; padding: 20px; border-radius: 25px;">
-        <div style="font-size: 2rem; margin-bottom: 10px;">🐶</div>
-        <h5 style="margin: 0 0 10px 0;">GOLD PROJECT: Portfolio</h5>
-        <p style="font-size: 0.75rem; color: #666; margin-bottom: 20px;">Мой первый серьезный проект в сети.</p>
-        
-        <!-- ОДНА ПРАВИЛЬНАЯ КНОПКА ВНУТРИ -->
-        <a href="https://github.com" target="_blank" class="btn-send" style="padding: 12px; font-size: 0.85rem; background: #1d3557; text-decoration: none; display: block; border-radius: 15px; color: white !important;">
-            Посмотреть код на GitHub
-        </a>
+        </div>
     </div>
-</div>
 
-<script>
-   
+    <script>
+        window.onload = function() {
+            const cards = document.querySelectorAll('.card');
+            const c = document.querySelector('.cursor');
+            const f = document.querySelector('.cursor-follower');
 
-    // 1. Создаем переменные сразу
-    const c = document.querySelector('.cursor');
-    const f = document.querySelector('.cursor-follower');
-    const cards = document.querySelectorAll('.card');
+            // 1. НАКЛОН И КУРСОР
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX, y = e.clientY;
+                c.style.left = f.style.left = x + 'px';
+                c.style.top = f.style.top = y + 'px';
 
-    // 2. Движение мыши (Главный двигатель)
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
+                cards.forEach(card => {
+                    const r = card.getBoundingClientRect();
+                    if (x > r.left && x < r.right && y > r.top && y < r.bottom) {
+                        const rotX = -(y - (r.top + r.height/2)) / 10;
+                        const rotY = (x - (r.left + r.width/2)) / 10;
+                        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+                    } else {
+                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                    }
+                });
+            });
 
-        // Двигаем курсор
-        if (c && f) {
-            c.style.left = x + 'px';
-            c.style.top = y + 'px';
-            f.style.left = x + 'px';
-            f.style.top = y + 'px';
+            // 2. ЦИФРЫ
+            document.querySelectorAll('.num').forEach((n, i) => {
+                let target = +n.getAttribute('data-target'), count = 0;
+                let t = setInterval(() => {
+                    n.innerText = ++count;
+                    if(count >= target) clearInterval(t);
+                }, 20);
+                document.querySelectorAll('.progress-fill')[i].style.width = target + '%';
+            });
+        };
+
+        function calculate() {
+            const v = document.getElementById('goalInput').value;
+            if(v) document.getElementById('calcResult').innerText = "Нужно: " + Math.round(v/730) + " руб/день";
         }
-
-        // ЖЕСТКИЙ 3D НАКЛОН
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            
-            // Если мышка НАД карточкой
-            if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-
-                // Наклон (делим на 10 для СИЛЬНОГО эффекта, потом поправим)
-                const rotX = -(y - centerY) / 10;
-                const rotY = (x - centerX) / 10;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
-                card.style.zIndex = "100"; // Вытаскиваем на передний план
-            } else {
-                // Плавный возврат
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-                card.style.zIndex = "1";
-            }
-        });
-    });
-
-    // 3. Анимация навыков (запускается один раз при загрузке)
-    window.addEventListener('load', () => {
-        document.querySelectorAll('.stat-number').forEach((stat, i) => {
-            const target = +stat.getAttribute('data-target');
-            let count = 0;
-            const timer = setInterval(() => {
-                stat.innerText = count;
-                if (count >= target) clearInterval(timer);
-                count++;
-            }, 20);
-            
-            const bars = document.querySelectorAll('.progress-fill');
-            if(bars[i]) {
-                bars[i].style.width = target + '%';
-                bars[i].style.transition = 'width 2s ease-out';
-            }
-        });
-    });
-
-    function calculate() {
-        const val = document.getElementById('goalInput').value;
-        const res = document.getElementById('calcResult');
-        if(val && res) res.innerText = "Нужно по " + Math.round(val/730) + " руб/день!";
-    }
-
-
-
-</script>
-
+    </script>
 </body>
 </html>
-
