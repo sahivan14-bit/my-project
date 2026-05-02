@@ -91,8 +91,8 @@
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
             if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                const rotX = -(y - (rect.top + rect.height/2)) / 30;
-                const rotY = (x - (rect.left + rect.width/2)) / 30;
+                const rotX = -(y - (rect.top + rect.height/2)) / 35;
+                const rotY = (x - (rect.left + rect.width/2)) / 35;
                 card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
             } else {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
