@@ -83,64 +83,62 @@
 </div>
 
 <script>
-    window.onload = function() {
-        const cards = document.querySelectorAll('.card');
-        const c = document.querySelector('.cursor');
-        const f = document.querySelector('.cursor-follower');
+    window.addEventListener('load', function() {
+    const c = document.querySelector('.cursor');
+    const f = document.querySelector('.cursor-follower');
+    const cards = document.querySelectorAll('.card');
 
-        // 1. КУРСОР И 3D-НАКЛОН
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            if(c && f) {
-                c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-                f.style.transform = `translate3d(${x - 11}px, ${y - 11}px, 0)`;
-            }
+    // 1. ДВИЖЕНИЕ КУРСОРA И 3D-НАКЛОН
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX;
+        const y = e.clientY;
 
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                    const rotX = (rect.top + rect.height/2 - y) / 30;
-                    const rotY = (x - (rect.left + rect.width/2)) / 30;
-                    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-                } else {
-                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-                }
-            });
-        });
-
-        // 2. АНИМАЦИЯ НАВЫКОВ (сразу при загрузке)
-        const stats = document.querySelectorAll('.stat-number');
-        const bars = document.querySelectorAll('.progress-fill');
-        
-        stats.forEach((stat, i) => {
-            const target = +stat.getAttribute('data-target');
-            let count = 0;
-            const timer = setInterval(() => {
-                stat.innerText = count;
-                if (count >= target) clearInterval(timer);
-                count++;
-            }, 20);
-            if(bars[i]) {
-                bars[i].style.width = target + '%';
-                bars[i].style.transition = 'width 2s ease-out';
-            }
-        });
-    };
-
-    // 3. ИСПРАВЛЕННЫЙ КАЛЬКУЛЯТОР (проверь id в инпуте!)
-    function calculate() {
-        // Убедись, что у тебя в HTML id="goalInput", а не id="goal"
-        const val = document.getElementById('goalInput').value;
-        const res = document.getElementById('calcResult');
-        if(val && res) {
-            res.innerText = "Нужно по " + Math.round(val/730) + " руб/день!";
+        if (c && f) {
+            c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            f.style.transform = `translate3d(${x - 11}px, ${y - 11}px, 0)`;
         }
+
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const rotX = -(y - centerY) / 30;
+                const rotY = (x - centerX) / 30;
+                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+            } else {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            }
+        });
+    });
+
+    // 2. АНИМАЦИЯ НАВЫКОВ
+    const stats = document.querySelectorAll('.stat-number');
+    const bars = document.querySelectorAll('.progress-fill');
+    stats.forEach((stat, i) => {
+        const target = +stat.getAttribute('data-target');
+        let count = 0;
+        const timer = setInterval(() => {
+            stat.innerText = count;
+            if (count >= target) clearInterval(timer);
+            count++;
+        }, 20);
+        if(bars[i]) {
+            bars[i].style.width = target + '%';
+            bars[i].style.transition = 'width 2s ease-out';
+        }
+    });
+});
+
+// 3. КАЛЬКУЛЯТОР (ОТДЕЛЬНО)
+function calculate() {
+    const val = document.getElementById('goalInput').value;
+    const res = document.getElementById('calcResult');
+    if(val && res) {
+        res.innerText = "Нужно по " + Math.round(val/730) + " руб/день!";
     }
+}
 </script>
 
-</body> 
-</html> 
-
-
+</body>
+</html>
