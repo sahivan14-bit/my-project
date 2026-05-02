@@ -234,3 +234,40 @@ body {
 .inner-block {
     margin-top: 10px !important; /* Делаем блоки ближе друг к другу */
 }
+/* ПРИТЕМНЯЕМ КАРТОЧКУ (Цвет Space Gray) */
+.card {
+    background: linear-gradient(180deg, #f1f3f6 0%, #e8ebf0 100%) !important;
+}
+
+/* ОТДЕЛЬНЫЕ РАМОЧКИ ДЛЯ УСЛУГ */
+.service-item {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 12px 15px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* ЭФФЕКТ ПРИ НАВЕДЕНИИ НА УСЛУГУ */
+.service-item:hover {
+    transform: translateX(5px) scale(1.02);
+    border-color: #ff416c;
+    box-shadow: 0 8px 20px rgba(255, 65, 108, 0.15);
+}
+
+.service-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1d3557;
+}
+
+/* ПРИТЕМНЯЕМ ИНПУТ, ЧТОБЫ ВЫДЕЛЯЛСЯ */
+.main-input {
+    background: #ffffff !important;
+    border: 2px solid #e0e4e9 !important;
+}
