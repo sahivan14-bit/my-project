@@ -26,6 +26,8 @@ body {
     text-align: center;
     transform-style: preserve-3d;
     transition: transform 0.1s ease-out;
+    margin: 0 auto 60px auto !important; /* Центрирует и делает разрыв снизу в 60 пикселей */
+    display: block !important; /* Чтобы блоки шли один под другим */
 }
 
 /* КРУГЛЫЙ МОПС */
