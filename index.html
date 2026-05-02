@@ -80,23 +80,19 @@
     const c = document.querySelector('.cursor');
     const f = document.querySelector('.cursor-follower');
 
-    // 1. СЛЕЖЕНИЕ ЗА КУРСОРОМ И 3D НАКЛОН
+    // 1. Курсор и 3D-наклон (без изменений, просто стабильно)
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX;
         const y = e.clientY;
-        
         if(c && f) {
             c.style.left = f.style.left = x + 'px';
             c.style.top = f.style.top = y + 'px';
         }
-
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
             if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                const rotX = -(y - centerY) / 40;
-                const rotY = (x - centerX) / 40;
+                const rotX = -(y - (rect.top + rect.height/2)) / 30;
+                const rotY = (x - (rect.left + rect.width/2)) / 30;
                 card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
             } else {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
@@ -104,17 +100,17 @@
         });
     });
 
-    // 2. ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ + ЖИВЫЕ ЦИФРЫ
+    // 2. Появление и бегущие цифры (аккуратный код)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
                 
-                // Анимация навыков (только если они есть в этой карточке)
+                // Анимация чисел
                 const stats = entry.target.querySelectorAll('.stat-number');
                 const bars = entry.target.querySelectorAll('.progress-fill');
                 
-                stats.forEach((stat, index) => {
+                stats.forEach((stat, i) => {
                     const target = +stat.getAttribute('data-target');
                     let count = 0;
                     const timer = setInterval(() => {
@@ -122,26 +118,17 @@
                         if (count >= target) clearInterval(timer);
                         count++;
                     }, 20);
-                    if(bars[index]) {
-                        bars[index].style.width = target + '%';
-                        bars[index].style.transition = 'width 2s ease-out';
-                    }
+                    if(bars[i]) bars[i].style.width = target + '%';
                 });
             }
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(card => {
-        observer.observe(card);
-    });
+    document.querySelectorAll('.reveal').forEach(card => observer.observe(card));
 };
+</script> 
 
-function calculate() {
-    const val = document.getElementById('goal').value;
-    if(val) document.getElementById('res').innerText = "Нужно копить по " + Math.round(val/730) + " руб/день";
-}
+</body> 
+</html> 
 
 
-    </script>
-</body>
-</html>
