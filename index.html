@@ -188,38 +188,44 @@ function createParticle(x, y) {
 }
 
 // ФУНКЦИЯ ЛЕТАЮЩИХ ЦЕЛЕЙ
-function startFloatingEmojis() {
+// Код для смайликов
+const startFloatingEmojis = () => {
     const container = document.querySelector('.floating-icons');
     if (!container) return;
 
     const emojis = ['🐶', '🏠', '🏎️', '💻', '💰', '🔥'];
+    
     setInterval(() => {
         const emoji = document.createElement('div');
-        emoji.className = 'bg-emoji';
         emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
         
-        // Стили прямо в коде, чтобы не потерялись
-        emoji.style.cssText = `
-            position: fixed;
-            bottom: -50px;
-            left: ${Math.random() * 100}vw;
-            font-size: ${Math.random() * 2 + 1}rem;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-            transition: transform 15s linear;
-        `;
+        // Прямые стили, чтобы не зависеть от CSS
+        Object.assign(emoji.style, {
+            position: 'fixed',
+            bottom: '-50px',
+            left: Math.random() * 100 + 'vw',
+            fontSize: (Math.random() * 2 + 1) + 'rem',
+            opacity: '0.15',
+            zIndex: '-1',
+            pointerEvents: 'none',
+            transition: 'transform 15s linear'
+        });
         
         container.appendChild(emoji);
-        setTimeout(() => { 
-            emoji.style.transform = 'translateY(-120vh) rotate(360deg)'; 
+
+        // Запуск полета
+        setTimeout(() => {
+            emoji.style.transform = 'translateY(-120vh) rotate(360deg)';
         }, 100);
+
+        // Удаление
         setTimeout(() => emoji.remove(), 16000);
     }, 2000);
-}
+};
 
-// Запускаем!
+// ВАЖНО: Вызываем функцию сразу!
 startFloatingEmojis();
+
 </script> 
 </body>
 </html>
