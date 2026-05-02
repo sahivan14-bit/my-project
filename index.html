@@ -13,7 +13,7 @@
 
     <div class="container">
         <!-- БЛОК 1: ТЫ И НАВЫКИ -->
-        <div class="card">
+        <div class="card reveal">
             <div class="avatar"><img src="png.jpg" alt="Мопс"></div>
             <h1 style="font-size: 1.4rem; color: #1d3557; margin-top: 15px;">ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
             <p style="color: #666; font-size: 0.85rem; margin-bottom: 20px;">Будущий Fullstack-разработчик.</p>
@@ -31,7 +31,7 @@
         </div>
 
         <!-- БЛОК 2: УСЛУГИ И КАЛЬКУЛЯТОР -->
-        <div class="card">
+        <div class="card reveal">
             <div class="inner-block">
                 <h4 style="color: #457b9d; margin-bottom: 15px;">УСЛУГИ</h4>
                 <p style="text-align: left; font-size: 0.85rem;"><strong>💻 Сайт-визитка</strong><br>3D-дизайн и эффекты.</p>
@@ -47,7 +47,7 @@
         </div>
 
         <!-- БЛОК 3: ПУТЬ К 16 ГОДАМ -->
-        <div class="card">
+        <div class="card reveal">
             <h3 style="color: #1d3557; margin-bottom: 10px;">ПУТЬ К 16 ГОДАМ</h3>
             <p style="font-size: 0.85rem; font-weight: bold;">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
             
@@ -98,6 +98,20 @@
             const res = document.getElementById('calcResult');
             if(val) res.innerText = "Нужно откладывать всего " + Math.round(val/730) + " руб/день!";
         }
+        const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1 // Анимация сработает, когда 10% карточки покажется на экране
+});
+
+document.querySelectorAll('.reveal').forEach(card => {
+    observer.observe(card);
+});
+
     </script>
 </body>
 </html>
