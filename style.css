@@ -58,9 +58,30 @@ body {
 .js { background: linear-gradient(90deg, #f1c40f, #f39c12); }
 
 /* КУРСОР */
-.cursor { position: fixed; width: 8px; height: 8px; background: #e63946; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
-.cursor-follower { position: fixed; width: 35px; height: 35px; border: 2px solid #e63946; border-radius: 50%; pointer-events: none; z-index: 9999; transition: 0.15s; transform: translate(-50%, -50%); }
-/* Анимация пульсации */
+.cursor, .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 100000;
+    /* Убираем лишние transition, чтобы точка не отставала */
+}
+
+.cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #e63946;
+}
+
+.cursor-follower {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #e63946;
+    background: rgba(230, 57, 70, 0.1);
+    transition: transform 0.1s ease-out; /* Плавность только для круга */
+}
+
 @keyframes buttonPulse {
     0% { transform: scale(1); box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4); }
     50% { transform: scale(1.05); box-shadow: 0 15px 30px rgba(230, 57, 70, 0.6); }

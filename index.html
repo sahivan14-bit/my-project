@@ -75,45 +75,43 @@
     </div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.card');
-    const c = document.querySelector('.cursor');
-    const f = document.querySelector('.cursor-follower');
+       // Используем простой слушатель без лишних оберток
+const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
+const cards = document.querySelectorAll('.card');
 
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
 
-        // Двигаем курсор (теперь он не прилипнет)
-        if (c && f) {
-            c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-            f.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    // Двигаем курсор
+    if (cursor && follower) {
+        cursor.style.transform = `translate(${x}px, ${y}px)`;
+        follower.style.transform = `translate(${x - 11}px, ${y - 11}px)`;
+    }
+
+    // 3D наклон карточек
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        
+        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const rotX = (centerY - y) / 25;
+            const rotY = (x - centerX) / 25;
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+        } else {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
         }
-
-        // 3D-наклон ТОЛЬКО при наведении
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            
-            if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-
-                // Ограничиваем наклон до 10 градусов (чтобы не ломало)
-                const rotX = (centerY - y) / 20;
-                const rotY = (x - centerX) / 20;
-
-                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-            } else {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-            }
-        });
     });
 });
 
-// Калькулятор (отдельно, чтобы не мешал)
 function calculate() {
     const val = document.getElementById('goalInput').value;
-    if(val) document.getElementById('calcResult').innerText = "Нужно по " + Math.round(val/730) + " руб/день";
+    const res = document.getElementById('calcResult');
+    if(val && res) {
+        res.innerText = "Нужно по " + Math.round(val/730) + " руб/день";
+    }
 }
 
 </script> 
