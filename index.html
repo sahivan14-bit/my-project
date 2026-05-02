@@ -73,48 +73,63 @@
 
         </div>
     </div>
+<script>
+    window.onload = function() {
+        const cards = document.querySelectorAll('.card');
+        const c = document.querySelector('.cursor');
+        const f = document.querySelector('.cursor-follower');
 
-    <script>
-       // Используем простой слушатель без лишних оберток
-const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
-const cards = document.querySelectorAll('.card');
+        // 1. КУРСОР И 3D-НАКЛОН
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            if(c && f) {
+                c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+                f.style.transform = `translate3d(${x - 11}px, ${y - 11}px, 0)`;
+            }
 
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+                    const rotX = (rect.top + rect.height/2 - y) / 25;
+                    const rotY = (x - (rect.left + rect.width/2)) / 25;
+                    card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+                } else {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                }
+            });
+        });
 
-    // Двигаем курсор
-    if (cursor && follower) {
-        cursor.style.transform = `translate(${x}px, ${y}px)`;
-        follower.style.transform = `translate(${x - 11}px, ${y - 11}px)`;
-    }
-
-    // 3D наклон карточек
-    cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
+        // 2. АНИМАЦИЯ НАВЫКОВ (сразу при загрузке)
+        const stats = document.querySelectorAll('.stat-number');
+        const bars = document.querySelectorAll('.progress-fill');
         
-        if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const rotX = (centerY - y) / 25;
-            const rotY = (x - centerX) / 25;
-            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-        } else {
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+        stats.forEach((stat, i) => {
+            const target = +stat.getAttribute('data-target');
+            let count = 0;
+            const timer = setInterval(() => {
+                stat.innerText = count;
+                if (count >= target) clearInterval(timer);
+                count++;
+            }, 20);
+            if(bars[i]) {
+                bars[i].style.width = target + '%';
+                bars[i].style.transition = 'width 2s ease-out';
+            }
+        });
+    };
+
+    // 3. ИСПРАВЛЕННЫЙ КАЛЬКУЛЯТОР (проверь id в инпуте!)
+    function calculate() {
+        // Убедись, что у тебя в HTML id="goalInput", а не id="goal"
+        const val = document.getElementById('goalInput').value;
+        const res = document.getElementById('calcResult');
+        if(val && res) {
+            res.innerText = "Нужно по " + Math.round(val/730) + " руб/день!";
         }
-    });
-});
-
-function calculate() {
-    const val = document.getElementById('goalInput').value;
-    const res = document.getElementById('calcResult');
-    if(val && res) {
-        res.innerText = "Нужно по " + Math.round(val/730) + " руб/день";
     }
-}
-
-</script> 
+</script>
 
 </body> 
 </html> 
