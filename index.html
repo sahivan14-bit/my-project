@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahivan-14 | LUX</title>
+    <title>Sahivan-14 | LUX Portfolio</title>
     <style>
         body {
             background: #0f172a;
-            margin: 0; font-family: sans-serif;
+            margin: 0; font-family: 'Segoe UI', sans-serif;
             display: flex; justify-content: center;
             min-height: 100vh; overflow-x: hidden;
             cursor: none;
         }
-        .container { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; width: 100%; }
+        .container { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; width: 100%; }
         
-        /* ГЛАВНЫЙ СЕКРЕТ 3D */
         .card {
             background: white; padding: 40px; border-radius: 40px;
-            margin-bottom: 50px; width: 100%; max-width: 320px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            
-            /* Эти настройки делают наклон БЕТОННЫМ */
+            margin-bottom: 60px; width: 100%; max-width: 340px;
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            /* МАГИЯ НАКЛОНА */
             transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--s, 1));
             transition: transform 0.1s ease-out;
             will-change: transform;
-            cursor: none;
         }
 
-        .avatar img { width: 140px; height: 140px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; }
+        .avatar img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .inner-block { border: 1px solid rgba(230, 57, 70, 0.2); padding: 20px; border-radius: 25px; margin-top: 20px; background: rgba(255,255,255,0.5); }
         
-        .cursor, .cursor-follower {
-            position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000;
-            top: 0; left: 0; transform: translate(-50%, -50%);
-        }
+        .progress-bg { width: 100%; background: #eee; border-radius: 10px; height: 8px; margin: 8px 0; overflow: hidden; }
+        .progress-fill { height: 100%; width: 0; transition: width 2s ease-out; }
+        .html { background: #e63946; } .css { background: #457b9d; } .js { background: #f1c40f; }
+
+        .cursor, .cursor-follower { position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000; top: 0; left: 0; transform: translate(-50%, -50%); }
         .cursor { width: 8px; height: 8px; background: #e63946; }
-        .cursor-follower { width: 35px; height: 35px; border: 2px solid #e63946; transition: 0.1s; }
+        .cursor-follower { width: 35px; height: 35px; border: 2px solid #e63946; transition: 0.12s; }
         
-        .btn-send { background: #e63946; color: white !important; padding: 15px; border-radius: 20px; display: block; text-decoration: none; margin-top: 20px; font-weight: bold; }
+        .btn-send { background: linear-gradient(45deg, #e63946, #ff4d6d); color: white !important; padding: 15px; border-radius: 20px; display: block; text-decoration: none; margin-top: 20px; font-weight: bold; border: none; }
     </style>
 </head>
 <body>
@@ -45,17 +43,43 @@
     <div class="cursor-follower"></div>
 
     <div class="container">
+        <!-- БЛОК 1: КТО ТЫ -->
         <div class="card">
-            <img src="png.jpg" class="avatar" style="width: 140px; height: 140px; border-radius: 50%;">
-            <h2>ВАНИН ПРОЕКТ</h2>
-            <a href="#" class="btn-send">Написать мне</a>
+            <div class="avatar"><img src="png.jpg"></div>
+            <h1 style="font-size: 1.4rem; color: #1d3557; margin-top: 15px;">ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
+            <a href="https://t.me" class="btn-send">Написать мне</a>
+            
+            <div class="inner-block">
+                <h4 style="color: #457b9d; font-size: 0.8rem; margin-bottom: 10px;">МОИ НАВЫКИ</h4>
+                <p style="font-size: 0.7rem; font-weight: bold; margin: 5px 0;">HTML - <span class="num" data-val="90">0</span>%</p>
+                <div class="progress-bg"><div class="bar html"></div></div>
+                <p style="font-size: 0.7rem; font-weight: bold; margin: 10px 0 5px;">CSS - <span class="num" data-val="80">0</span>%</p>
+                <div class="progress-bg"><div class="bar css"></div></div>
+            </div>
         </div>
-        
+
+        <!-- БЛОК 2: БИЗНЕС -->
         <div class="card">
-            <h3>КАЛЬКУЛЯТОР</h3>
-            <input type="number" id="goal" style="width: 80%; padding: 10px; border-radius: 10px; border: 1px solid #ddd;">
-            <button onclick="calc()" class="btn-send" style="width: 90%; margin: 10px auto; border: none;">Считать</button>
-            <p id="res"></p>
+            <div class="inner-block">
+                <h4 style="color: #457b9d;">УСЛУГИ</h4>
+                <p style="font-size: 0.85rem;">💻 3D Сайт-визитка<br>📱 Верстка из Figma</p>
+            </div>
+            <div class="inner-block">
+                <h4 style="color: #457b9d;">🧮 КАЛЬКУЛЯТОР</h4>
+                <input type="number" id="inp" placeholder="Цена мечты" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ddd; outline: none; box-sizing: border-box;">
+                <button onclick="calc()" class="btn-send" style="width: 100%; margin-top: 10px; cursor: none;">Считать</button>
+                <p id="res" style="margin-top: 10px; font-weight: bold;"></p>
+            </div>
+        </div>
+
+        <!-- БЛОК 3: МЕЧТА -->
+        <div class="card">
+            <h3 style="color: #1d3557;">ПУТЬ К 16 ГОДАМ</h3>
+            <p style="font-size: 0.85rem; font-weight: bold;">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
+            <div class="inner-block" style="border: 2px solid #ffd700; background: linear-gradient(to bottom, #fff, #fff9e6);">
+                <h5>GOLD PROJECT: Portfolio</h5>
+                <a href="https://github.com" target="_blank" class="btn-send" style="background: #1d3557; font-size: 0.8rem;">GitHub</a>
+            </div>
         </div>
     </div>
 
@@ -65,28 +89,18 @@
         const f = document.querySelector('.cursor-follower');
 
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-
-            // Курсор всегда работает
+            const x = e.clientX, y = e.clientY;
             c.style.left = f.style.left = x + 'px';
             c.style.top = f.style.top = y + 'px';
 
             cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                
-                // Если мышка ВНУТРИ карточки
-                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-
-                    // Наклон
-                    const rx = -(y - centerY) / 10;
-                    const ry = (x - centerX) / 10;
-
+                const r = card.getBoundingClientRect();
+                if (x > r.left && x < r.right && y > r.top && y < r.bottom) {
+                    const rx = -(y - (r.top + r.height/2)) / 15;
+                    const ry = (x - (r.left + r.width/2)) / 15;
                     card.style.setProperty('--rx', `${rx}deg`);
                     card.style.setProperty('--ry', `${ry}deg`);
-                    card.style.setProperty('--s', `1.05`);
+                    card.style.setProperty('--s', `1.03`);
                 } else {
                     card.style.setProperty('--rx', `0deg`);
                     card.style.setProperty('--ry', `0deg`);
@@ -95,9 +109,23 @@
             });
         });
 
+        window.onload = () => {
+            document.querySelectorAll('.num').forEach(n => {
+                let target = +n.getAttribute('data-val'), count = 0;
+                let t = setInterval(() => {
+                    n.innerText = ++count;
+                    if(count >= target) clearInterval(t);
+                }, 20);
+            });
+            document.querySelectorAll('.bar').forEach(b => {
+                const val = b.parentElement.previousElementSibling.querySelector('.num').getAttribute('data-val');
+                setTimeout(() => { b.style.width = val + '%'; }, 100);
+            });
+        };
+
         function calc() {
-            const v = document.getElementById('goal').value;
-            if(v) document.getElementById('res').innerText = "Нужно: " + Math.round(v/730) + " р/д";
+            const v = document.getElementById('inp').value;
+            if(v) document.getElementById('res').innerText = "Нужно: " + Math.round(v/730) + " руб/день";
         }
     </script>
 </body>
