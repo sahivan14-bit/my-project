@@ -75,30 +75,40 @@
     </div>
 
     <script>
-        window.onload = function() {
-    const cards = document.querySelectorAll('.card');
-    const c = document.querySelector('.cursor');
-    const f = document.querySelector('.cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
 
-    // 1. Курсор и 3D-наклон (без изменений, просто стабильно)
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
-        if(c && f) {
-            c.style.left = f.style.left = x + 'px';
-            c.style.top = f.style.top = y + 'px';
+    // Курсор
+    if(c && f) {
+        c.style.left = f.style.left = x + 'px';
+        c.style.top = f.style.top = y + 'px';
+    }
+
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        
+        // ПРОВЕРКА: Если мышка НАД карточкой
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Вычисляем наклон и СРАЗУ ограничиваем его (не больше 15 градусов)
+            let rotX = -(y - centerY) / 30;
+            let rotY = (x - centerX) / 30;
+
+            // Ограничитель, чтобы не "ломало"
+            rotX = Math.max(Math.min(rotX, 15), -15);
+            rotY = Math.max(Math.min(rotY, 15), -15);
+
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
+        } else {
+            // Если мышка ушла - возвращаем в ноль плавно
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
         }
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                const rotX = -(y - (rect.top + rect.height/2)) / 35;
-                const rotY = (x - (rect.left + rect.width/2)) / 35;
-                card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
-            } else {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-            }
-        });
     });
+});
+
 
     // 2. Появление и бегущие цифры (аккуратный код)
     const observer = new IntersectionObserver((entries) => {
@@ -125,7 +135,7 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(card => observer.observe(card));
-};
+
 </script> 
 
 </body> 
