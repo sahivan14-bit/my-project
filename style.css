@@ -10,8 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    min-height: 100vh;
+    padding: 40px 20px;
 }
 
 /* КАРТОЧКИ (ВАГОНЫ) */
@@ -19,14 +18,13 @@ body {
     background: white;
     padding: 40px;
     border-radius: 40px;
-    margin-bottom: 80px !important;
-    
-    /* ВОТ ЭТИ ТРИ СТРОЧКИ ДОЛЖНЫ БЫТЬ ИМЕННО ТАКИМИ: */
-    transform-style: preserve-3d !important;
-    will-change: transform;
-    transition: transform 0.2s ease-out !important; /* Быстрый отклик */
-    
-    /* Убедись, что нет transform: none; */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4); /* Мощная тень для объема */
+    margin-bottom: 60px !important;
+    width: 90%; /* На мобилках будет почти во весь экран */
+    max-width: 400px; /* На компе будет чуть солиднее */
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 
