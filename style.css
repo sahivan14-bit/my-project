@@ -7,8 +7,11 @@ body {
 }
 
 .container {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 60px 20px; width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
 }
 
 /* КАРТОЧКИ (ВАГОНЫ) */
@@ -99,11 +102,10 @@ body {
     transform: translateY(-3px) scale(1.08);
 }
 /* Начальное состояние: карточка прозрачная и чуть ниже своего места */
-.reveal {
-    opacity: 0;
-    transform: translateY(50px) scale(0.9);
-    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    filter: blur(5px); /* Добавим легкое размытие для дорогого эффекта */
+   .reveal {
+    opacity: 1 !important; /* Делаем видимыми сразу */
+    transform: none !important; /* Убираем смещение */
+    filter: none !important; /* Убираем размытие */
 }
 
 /* Состояние после появления: всё четко и на месте */
