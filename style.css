@@ -349,3 +349,32 @@ body {
     margin: 15px auto 0 !important;
     box-shadow: 0 8px 20px rgba(29, 53, 87, 0.4) !important;
 }
+/* РЕАЛЬНЫЙ ОГОНЬ Sahivan-14 */
+.fire-card {
+    position: relative;
+    z-index: 1;
+}
+
+.fire-card::before {
+    content: '';
+    position: absolute;
+    top: -10px; left: -10px; right: -10px; bottom: -10px;
+    background: linear-gradient(45deg, #ff4500, #ff8c00, #ffd700, #ff4500);
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(20px);
+    border-radius: 55px; /* Чуть больше чем у карточки */
+    animation: fire-glow 3s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fire-glow {
+    0% { background-position: 0% 50%; opacity: 0.6; }
+    50% { background-position: 100% 50%; opacity: 1; filter: blur(25px); }
+    100% { background-position: 0% 50%; opacity: 0.6; }
+}
+
+/* Добавим свечение самому тексту заголовка */
+.fire-card .title {
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
