@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahivan-14 | Portfolio</title>
+    <title>Sahivan-14 | LUX</title>
     <style>
-        /* ВЕСЬ CSS ТЕПЕРЬ ТУТ */
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            margin: 0; font-family: 'Segoe UI', sans-serif;
+            background: #0f172a;
+            margin: 0; font-family: sans-serif;
             display: flex; justify-content: center;
-            cursor: none; overflow-x: hidden; min-height: 100vh;
+            min-height: 100vh; overflow-x: hidden;
+            cursor: none;
         }
-        .container { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; width: 100%; }
+        .container { display: flex; flex-direction: column; align-items: center; padding: 50px 20px; width: 100%; }
+        
+        /* ГЛАВНЫЙ СЕКРЕТ 3D */
         .card {
             background: white; padding: 40px; border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-            margin-bottom: 60px; width: 100%; max-width: 340px;
-            text-align: center; position: relative;
-            transform-style: preserve-3d;
+            margin-bottom: 50px; width: 100%; max-width: 320px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            
+            /* Эти настройки делают наклон БЕТОННЫМ */
+            transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--s, 1));
             transition: transform 0.1s ease-out;
-            z-index: 1;
+            will-change: transform;
+            cursor: none;
         }
-        .avatar img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 5px solid white; }
-        .inner-block { border: 1px solid rgba(230, 57, 70, 0.2); padding: 20px; border-radius: 25px; margin-top: 20px; }
-        .progress-bg { width: 100%; background: #eee; border-radius: 10px; height: 8px; margin: 8px 0; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0; transition: width 2s ease-out; background: #e63946; }
-        .cursor, .cursor-follower { position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); }
+
+        .avatar img { width: 140px; height: 140px; border-radius: 50%; border: 5px solid #fff; object-fit: cover; }
+        
+        .cursor, .cursor-follower {
+            position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000;
+            top: 0; left: 0; transform: translate(-50%, -50%);
+        }
         .cursor { width: 8px; height: 8px; background: #e63946; }
         .cursor-follower { width: 35px; height: 35px; border: 2px solid #e63946; transition: 0.1s; }
-        .btn-send { background: #e63946; color: white !important; padding: 15px; border-radius: 20px; text-decoration: none; display: block; margin-top: 15px; font-weight: bold; }
+        
+        .btn-send { background: #e63946; color: white !important; padding: 15px; border-radius: 20px; display: block; text-decoration: none; margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -38,68 +46,58 @@
 
     <div class="container">
         <div class="card">
-            <div class="avatar"><img src="png.jpg"></div>
-            <h1>ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
-            <a href="https://t.me" class="btn-send">Написать мне</a>
-            <div class="inner-block">
-                <p style="font-size: 0.8rem; font-weight: bold;">HTML - <span class="num" data-target="90">0</span>%</p>
-                <div class="progress-bg"><div class="progress-fill" style="width: 0%"></div></div>
-                <p style="font-size: 0.8rem; font-weight: bold;">CSS - <span class="num" data-target="80">0</span>%</p>
-                <div class="progress-bg"><div class="progress-fill" style="width: 0%"></div></div>
-            </div>
+            <img src="png.jpg" class="avatar" style="width: 140px; height: 140px; border-radius: 50%;">
+            <h2>ВАНИН ПРОЕКТ</h2>
+            <a href="#" class="btn-send">Написать мне</a>
         </div>
-
+        
         <div class="card">
-            <div class="inner-block">
-                <h4>УСЛУГИ</h4>
-                <p>3D Сайт-визитка</p>
-            </div>
-            <div class="inner-block">
-                <input type="number" id="goalInput" placeholder="Цена мечты" style="width:100%; padding:10px; border-radius:10px; border:1px solid #ddd; outline:none;">
-                <button onclick="calculate()" class="btn-send" style="border:none; width:100%;">Рассчитать</button>
-                <p id="calcResult" style="margin-top:15px; font-weight:bold;"></p>
-            </div>
+            <h3>КАЛЬКУЛЯТОР</h3>
+            <input type="number" id="goal" style="width: 80%; padding: 10px; border-radius: 10px; border: 1px solid #ddd;">
+            <button onclick="calc()" class="btn-send" style="width: 90%; margin: 10px auto; border: none;">Считать</button>
+            <p id="res"></p>
         </div>
     </div>
 
     <script>
-        window.onload = function() {
-            const cards = document.querySelectorAll('.card');
-            const c = document.querySelector('.cursor');
-            const f = document.querySelector('.cursor-follower');
+        const cards = document.querySelectorAll('.card');
+        const c = document.querySelector('.cursor');
+        const f = document.querySelector('.cursor-follower');
 
-            // 1. НАКЛОН И КУРСОР
-            document.addEventListener('mousemove', (e) => {
-                const x = e.clientX, y = e.clientY;
-                c.style.left = f.style.left = x + 'px';
-                c.style.top = f.style.top = y + 'px';
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
 
-                cards.forEach(card => {
-                    const r = card.getBoundingClientRect();
-                    if (x > r.left && x < r.right && y > r.top && y < r.bottom) {
-                        const rotX = -(y - (r.top + r.height/2)) / 10;
-                        const rotY = (x - (r.left + r.width/2)) / 10;
-                        card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`;
-                    } else {
-                        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
-                    }
-                });
+            // Курсор всегда работает
+            c.style.left = f.style.left = x + 'px';
+            c.style.top = f.style.top = y + 'px';
+
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                
+                // Если мышка ВНУТРИ карточки
+                if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
+                    const centerX = rect.left + rect.width / 2;
+                    const centerY = rect.top + rect.height / 2;
+
+                    // Наклон
+                    const rx = -(y - centerY) / 10;
+                    const ry = (x - centerX) / 10;
+
+                    card.style.setProperty('--rx', `${rx}deg`);
+                    card.style.setProperty('--ry', `${ry}deg`);
+                    card.style.setProperty('--s', `1.05`);
+                } else {
+                    card.style.setProperty('--rx', `0deg`);
+                    card.style.setProperty('--ry', `0deg`);
+                    card.style.setProperty('--s', `1`);
+                }
             });
+        });
 
-            // 2. ЦИФРЫ
-            document.querySelectorAll('.num').forEach((n, i) => {
-                let target = +n.getAttribute('data-target'), count = 0;
-                let t = setInterval(() => {
-                    n.innerText = ++count;
-                    if(count >= target) clearInterval(t);
-                }, 20);
-                document.querySelectorAll('.progress-fill')[i].style.width = target + '%';
-            });
-        };
-
-        function calculate() {
-            const v = document.getElementById('goalInput').value;
-            if(v) document.getElementById('calcResult').innerText = "Нужно: " + Math.round(v/730) + " руб/день";
+        function calc() {
+            const v = document.getElementById('goal').value;
+            if(v) document.getElementById('res').innerText = "Нужно: " + Math.round(v/730) + " р/д";
         }
     </script>
 </body>
