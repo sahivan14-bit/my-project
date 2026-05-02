@@ -92,6 +92,13 @@
         </a>
     </div>
 </div>
+<!-- ПАСХАЛКА: ПАНЕЛЬ УПРАВЛЕНИЯ AMG -->
+<div class="nitro-section" style="margin-top: 50px; text-align: center; padding-bottom: 100px;">
+    <p style="color: rgba(255,255,255,0.4); font-size: 0.7rem; letter-spacing: 2px;">SYSTEM STATUS: READY</p>
+    <button id="nitroBtn" class="btn-send" style="background: #111; border: 1px solid #333; font-size: 0.7rem; width: auto; display: inline-block; padding: 10px 20px;">
+        ВКЛЮЧИТЬ NITRO 🚀
+    </button>
+</div>
 
 
     <script src="script.js"></script>
@@ -153,6 +160,38 @@ function calc() {
     const v = document.getElementById('inp').value;
     if(v) document.getElementById('res').innerText = "Нужно: " + Math.round(v/730) + " руб/день";
 }
+const nitroBtn = document.getElementById('nitroBtn');
+
+nitroBtn.addEventListener('click', () => {
+    // Включаем эффекты
+    document.body.classList.add('nitro-active');
+    nitroBtn.classList.add('btn-nitro-on');
+    nitroBtn.innerText = "NITRO ACTIVE! 🔥";
+
+    // Автоматическое выключение через 5 секунд
+    setTimeout(() => {
+        document.body.classList.remove('nitro-active');
+        nitroBtn.classList.remove('btn-nitro-on');
+        nitroBtn.innerText = "ВКЛЮЧИТЬ NITRO 🚀";
+    }, 5000);
+    
+    // Доп. фишка: куча искр при нажатии
+    for(let i=0; i<30; i++) {
+        createParticle(window.innerWidth/2, window.innerHeight - 100);
+    }
+});
+
+// Вспомогательная функция для искр (если её нет)
+function createParticle(x, y) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    document.body.appendChild(p);
+    p.style.left = x + 'px'; p.style.top = y + 'px';
+    const dX = (Math.random()-0.5)*400, dY = (Math.random()-0.5)*400;
+    setTimeout(() => { p.style.transform = `translate(${dX}px, ${dY}px) scale(0)`; p.style.opacity = 0; }, 10);
+    setTimeout(() => p.remove(), 1000);
+}
+
 </script>
 </body>
 </html>
