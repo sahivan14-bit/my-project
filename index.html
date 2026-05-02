@@ -95,8 +95,8 @@
             if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                const rotX = -(y - centerY) / 30;
-                const rotY = (x - centerX) / 30;
+                const rotX = -(y - centerY) / 40;
+                const rotY = (x - centerX) / 40;
                 card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
             } else {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
