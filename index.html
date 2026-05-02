@@ -83,54 +83,43 @@
 </div>
 
 <script>
-    window.addEventListener('load', function() {
+   window.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.card');
     const c = document.querySelector('.cursor');
     const f = document.querySelector('.cursor-follower');
-    const cards = document.querySelectorAll('.card');
 
-    // 1. ДВИЖЕНИЕ КУРСОРA И 3D-НАКЛОН
+    console.log("Скрипт Sahivan-14 запущен!");
+
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX;
         const y = e.clientY;
 
+        // 1. Движение курсора
         if (c && f) {
             c.style.transform = `translate3d(${x}px, ${y}px, 0)`;
             f.style.transform = `translate3d(${x - 11}px, ${y - 11}px, 0)`;
         }
 
+        // 2. 3D-наклон
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
+            
+            // Проверяем, находится ли мышь над карточкой
             if (x > rect.left && x < rect.right && y > rect.top && y < rect.bottom) {
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                const rotX = -(y - centerY) / 30;
-                const rotY = (x - centerX) / 30;
+
+                const rotX = (centerY - y) / 20;
+                const rotY = (x - centerX) / 20;
+
                 card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
             } else {
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
             }
         });
     });
-
-    // 2. АНИМАЦИЯ НАВЫКОВ
-    const stats = document.querySelectorAll('.stat-number');
-    const bars = document.querySelectorAll('.progress-fill');
-    stats.forEach((stat, i) => {
-        const target = +stat.getAttribute('data-target');
-        let count = 0;
-        const timer = setInterval(() => {
-            stat.innerText = count;
-            if (count >= target) clearInterval(timer);
-            count++;
-        }, 20);
-        if(bars[i]) {
-            bars[i].style.width = target + '%';
-            bars[i].style.transition = 'width 2s ease-out';
-        }
-    });
 });
 
-// 3. КАЛЬКУЛЯТОР (ОТДЕЛЬНО)
 function calculate() {
     const val = document.getElementById('goalInput').value;
     const res = document.getElementById('calcResult');
@@ -142,3 +131,4 @@ function calculate() {
 
 </body>
 </html>
+
