@@ -1,133 +1,116 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sahivan-14 | LUX Portfolio</title>
-    <style>
-        body {
-            background: #0f172a;
-            margin: 0; font-family: 'Segoe UI', sans-serif;
-            display: flex; justify-content: center;
-            min-height: 100vh; overflow-x: hidden;
-            cursor: none;
-        }
-        .container { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; width: 100%; }
-        
-        .card {
-            background: white; padding: 40px; border-radius: 40px;
-            margin-bottom: 60px; width: 100%; max-width: 340px;
-            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            /* МАГИЯ НАКЛОНА */
-            transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) scale(var(--s, 1));
-            transition: transform 0.1s ease-out;
-            will-change: transform;
-        }
-
-        .avatar img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 5px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .inner-block { border: 1px solid rgba(230, 57, 70, 0.2); padding: 20px; border-radius: 25px; margin-top: 20px; background: rgba(255,255,255,0.5); }
-        
-        .progress-bg { width: 100%; background: #eee; border-radius: 10px; height: 8px; margin: 8px 0; overflow: hidden; }
-        .progress-fill { height: 100%; width: 0; transition: width 2s ease-out; }
-        .html { background: #e63946; } .css { background: #457b9d; } .js { background: #f1c40f; }
-
-        .cursor, .cursor-follower { position: fixed; border-radius: 50%; pointer-events: none; z-index: 10000; top: 0; left: 0; transform: translate(-50%, -50%); }
-        .cursor { width: 8px; height: 8px; background: #e63946; }
-        .cursor-follower { width: 35px; height: 35px; border: 2px solid #e63946; transition: 0.12s; }
-        
-        .btn-send { background: linear-gradient(45deg, #e63946, #ff4d6d); color: white !important; padding: 15px; border-radius: 20px; display: block; text-decoration: none; margin-top: 20px; font-weight: bold; border: none; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <div class="container">
-        <!-- БЛОК 1: КТО ТЫ -->
-        <div class="card">
-            <div class="avatar"><img src="png.jpg"></div>
-            <h1 style="font-size: 1.4rem; color: #1d3557; margin-top: 15px;">ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
+        <!-- БЛОК 1: ТЫ -->
+        <div class="card reveal">
+            <div class="avatar"><img src="png.jpg" alt="Мопс"></div>
+            <h1 class="title">ДОБРЫЙ ДЕНЬ, ВАНЯ!</h1>
             <a href="https://t.me" class="btn-send">Написать мне</a>
             
             <div class="inner-block">
-                <h4 style="color: #457b9d; font-size: 0.8rem; margin-bottom: 10px;">МОИ НАВЫКИ</h4>
-                <p style="font-size: 0.7rem; font-weight: bold; margin: 5px 0;">HTML - <span class="num" data-val="90">0</span>%</p>
+                <h4 class="block-label">МОИ НАВЫКИ</h4>
+                <p class="stat-text">HTML - <span class="num" data-val="90">0</span>%</p>
                 <div class="progress-bg"><div class="bar html"></div></div>
-                <p style="font-size: 0.7rem; font-weight: bold; margin: 10px 0 5px;">CSS - <span class="num" data-val="80">0</span>%</p>
+                <p class="stat-text">CSS - <span class="num" data-val="80">0</span>%</p>
                 <div class="progress-bg"><div class="bar css"></div></div>
             </div>
         </div>
 
         <!-- БЛОК 2: БИЗНЕС -->
-        <div class="card">
+        <div class="card reveal">
             <div class="inner-block">
-                <h4 style="color: #457b9d;">УСЛУГИ</h4>
-                <p style="font-size: 0.85rem;">💻 3D Сайт-визитка<br>📱 Верстка из Figma</p>
+                <h4 class="block-label">УСЛУГИ</h4>
+                <p class="service-text">💻 3D Сайт-визитка<br>📱 Верстка под ключ</p>
             </div>
             <div class="inner-block">
-                <h4 style="color: #457b9d;">🧮 КАЛЬКУЛЯТОР</h4>
-                <input type="number" id="inp" placeholder="Цена мечты" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #ddd; outline: none; box-sizing: border-box;">
-                <button onclick="calc()" class="btn-send" style="width: 100%; margin-top: 10px; cursor: none;">Считать</button>
-                <p id="res" style="margin-top: 10px; font-weight: bold;"></p>
+                <h4 class="block-label">КАЛЬКУЛЯТОР</h4>
+                <input type="number" id="inp" placeholder="Цена мечты" class="main-input">
+                <button onclick="calc()" class="btn-send" style="width: 100%; border: none;">Рассчитать</button>
+                <p id="res" class="calc-res"></p>
             </div>
         </div>
 
-        <!-- БЛОК 3: МЕЧТА -->
-        <div class="card">
-            <h3 style="color: #1d3557;">ПУТЬ К 16 ГОДАМ</h3>
-            <p style="font-size: 0.85rem; font-weight: bold;">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
-            <div class="inner-block" style="border: 2px solid #ffd700; background: linear-gradient(to bottom, #fff, #fff9e6);">
+        <!-- БЛОК 3: ПОРТФОЛИО -->
+        <div class="card reveal">
+            <h3 class="title">ПУТЬ К 16 ГОДАМ</h3>
+            <p class="goal-text">🏠 ЖК Иртыш | 🏎️ AMG GT</p>
+            <div class="inner-block gold-border">
+                <div class="emoji-icon">🐶</div>
                 <h5>GOLD PROJECT: Portfolio</h5>
-                <a href="https://github.com" target="_blank" class="btn-send" style="background: #1d3557; font-size: 0.8rem;">GitHub</a>
+                <a href="https://github.com" target="_blank" class="btn-send secondary-btn">GitHub</a>
             </div>
         </div>
     </div>
 
-    <script>
-        const cards = document.querySelectorAll('.card');
-        const c = document.querySelector('.cursor');
-        const f = document.querySelector('.cursor-follower');
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+window.onload = () => {
+    const cards = document.querySelectorAll('.card');
+    const c = document.querySelector('.cursor');
+    const f = document.querySelector('.cursor-follower');
 
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX, y = e.clientY;
-            c.style.left = f.style.left = x + 'px';
-            c.style.top = f.style.top = y + 'px';
+    // КУРСОР И 3D НАКЛОН
+    document.addEventListener('mousemove', (e) => {
+        const x = e.clientX, y = e.clientY;
+        c.style.left = f.style.left = x + 'px';
+        c.style.top = f.style.top = y + 'px';
 
-            cards.forEach(card => {
-                const r = card.getBoundingClientRect();
-                if (x > r.left && x < r.right && y > r.top && y < r.bottom) {
-                    const rx = -(y - (r.top + r.height/2)) / 15;
-                    const ry = (x - (r.left + r.width/2)) / 15;
-                    card.style.setProperty('--rx', `${rx}deg`);
-                    card.style.setProperty('--ry', `${ry}deg`);
-                    card.style.setProperty('--s', `1.03`);
-                } else {
-                    card.style.setProperty('--rx', `0deg`);
-                    card.style.setProperty('--ry', `0deg`);
-                    card.style.setProperty('--s', `1`);
-                }
-            });
+        cards.forEach(card => {
+            const r = card.getBoundingClientRect();
+            if (x > r.left && x < r.right && y > r.top && y < r.bottom) {
+                const rx = -(y - (r.top + r.height/2)) / 15;
+                const ry = (x - (r.left + r.width/2)) / 15;
+                card.style.setProperty('--rx', `${rx}deg`);
+                card.style.setProperty('--ry', `${ry}deg`);
+                card.style.setProperty('--s', `1.04`);
+            } else {
+                card.style.setProperty('--rx', `0deg`);
+                card.style.setProperty('--ry', `0deg`);
+                card.style.setProperty('--s', `1`);
+            }
         });
+    });
 
-        window.onload = () => {
-            document.querySelectorAll('.num').forEach(n => {
-                let target = +n.getAttribute('data-val'), count = 0;
-                let t = setInterval(() => {
-                    n.innerText = ++count;
-                    if(count >= target) clearInterval(t);
-                }, 20);
-            });
-            document.querySelectorAll('.bar').forEach(b => {
-                const val = b.parentElement.previousElementSibling.querySelector('.num').getAttribute('data-val');
-                setTimeout(() => { b.style.width = val + '%'; }, 100);
-            });
-        };
-
-        function calc() {
-            const v = document.getElementById('inp').value;
-            if(v) document.getElementById('res').innerText = "Нужно: " + Math.round(v/730) + " руб/день";
+    // ИСКРЫ ПРИ КЛИКЕ
+    document.addEventListener('click', (e) => {
+        for(let i=0; i<10; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            document.body.appendChild(p);
+            p.style.left = e.clientX + 'px'; p.style.top = e.clientY + 'px';
+            const dX = (Math.random()-0.5)*250, dY = (Math.random()-0.5)*250;
+            setTimeout(() => { p.style.transform = `translate(${dX}px, ${dY}px) scale(0)`; p.style.opacity = 0; }, 10);
+            setTimeout(() => p.remove(), 600);
         }
-    </script>
+    });
+
+    // АНИМАЦИЯ ЦИФР И ПОЛОСОК
+    document.querySelectorAll('.num').forEach(n => {
+        let target = +n.getAttribute('data-val'), count = 0;
+        let t = setInterval(() => { n.innerText = ++count; if(count >= target) clearInterval(t); }, 20);
+    });
+    document.querySelectorAll('.bar').forEach(b => {
+        const val = b.parentElement.previousElementSibling.querySelector('.num').getAttribute('data-val');
+        setTimeout(() => { b.style.width = val + '%'; }, 100);
+    });
+};
+
+function calc() {
+    const v = document.getElementById('inp').value;
+    if(v) document.getElementById('res').innerText = "Нужно: " + Math.round(v/730) + " руб/день";
+}
+</script>
 </body>
 </html>
