@@ -213,9 +213,16 @@ function startFloatingEmojis() {
         container.appendChild(emoji);
 
         // Запуск анимации через микро-паузу
+                // 1. Сначала задаем стартовую позицию (внизу)
+        emoji.style.transform = 'translateY(0) rotate(0deg)';
+
+        // 2. Через мгновение даем команду лететь ВВЕРХ
         setTimeout(() => {
+            // ОБЯЗАТЕЛЬНО МИНУС ПЕРЕД 120
             emoji.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
+            emoji.style.opacity = '0'; // Чтобы плавно исчезали в небе
         }, 50);
+
 
         // Удаление
         setTimeout(() => {
