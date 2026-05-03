@@ -1,5 +1,5 @@
 body {
-    background: #ffffff !important; /* Тот самый розовый фон */
+    background: #4c4cb5 !important; /* Тот самый розовый фон */
     margin: 0; font-family: 'Segoe UI', Roboto, sans-serif;
     display: flex; justify-content: center;
     cursor: none; overflow-x: hidden;
