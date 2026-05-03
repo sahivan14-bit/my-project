@@ -75,13 +75,17 @@
     </div>
 </div>
 <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
-<div class="inner-block lead-form" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
-    <h4 style="color: #457b9d; font-size: 0.9rem;">ЗАКАЗАТЬ ТАКОЙ САЙТ</h4>
-    <input type="text" id="userName" placeholder="Твой ник в TG" class="main-input" style="margin-bottom: 10px;">
-    <button onclick="sendToTelegram()" class="btn-send shine-btn small-btn" style="background: #1d3557;">
+<div class="inner-block">
+    <h4 class="block-label">ЗАКАЗАТЬ ТАКОЙ САЙТ</h4>
+    <!-- Поле для ввода ника -->
+    <input type="text" id="userName" placeholder="Твой ник в TG" class="main-input">
+    
+    <!-- КНОПКА С КОМАНДОЙ ONCLICK -->
+    <button onclick="sendToTelegram()" class="btn-send shine-btn">
         ОТПРАВИТЬ ЗАЯВКУ 🚀
     </button>
 </div>
+
 
 <!-- ПОРТФОЛИО (БЕЗ РАСТЯГИВАНИЯ) -->
 <div class="card reveal fire-card"> <!-- Добавили магию огня -->
@@ -261,7 +265,7 @@ function sendToTelegram() {
     });
 }
 
-</script> 
+</script>
 </body>
 </html>
       
