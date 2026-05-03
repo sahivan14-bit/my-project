@@ -188,51 +188,42 @@ function createParticle(x, y) {
     setTimeout(() => p.remove(), 1000);
 }
 
-// ФУНКЦИЯ ЛЕТАЮЩИХ ЦЕЛЕЙ
-// Код для смайликов
 function startFloatingEmojis() {
     const container = document.querySelector('.floating-icons');
     if (!container) return;
 
-    const emojis = ['🐶', '🏠', '🏎️', '💰', '🔥', '✨'];
+    const emojis = ['🐶', '🏠', '🏎️', '💰', '🔥'];
 
     setInterval(() => {
         const emoji = document.createElement('div');
-        emoji.className = 'bg-emoji';
         emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
         
-        // Рандомные настройки
-        const size = Math.random() * (2.5 - 1) + 1;
-        const left = Math.random() * 100;
-        const duration = Math.random() * (15 - 10) + 10; // 10-15 секунд на полет
-
-        emoji.style.left = left + 'vw';
-        emoji.style.fontSize = size + 'rem';
-        emoji.style.transition = `transform ${duration}s linear, opacity 1s`;
+        // ЖЕСТКИЕ СТИЛИ (чтобы точно было видно)
+        Object.assign(emoji.style, {
+            position: 'fixed',
+            bottom: '-100px', // Начинаем за краем экрана
+            left: Math.random() * 100 + 'vw',
+            fontSize: (Math.random() * 2 + 1) + 'rem',
+            opacity: '0.3',
+            zIndex: '0', // Поставим чуть выше фона
+            pointerEvents: 'none',
+            transition: 'transform 10s linear, opacity 10s' // Длительность полета 10 секунд
+        });
         
         container.appendChild(emoji);
 
-        // Запуск анимации через микро-паузу
-                // 1. Сначала задаем стартовую позицию (внизу)
-        emoji.style.transform = 'translateY(0) rotate(0deg)';
-
-        // 2. Через мгновение даем команду лететь ВВЕРХ
+        // ЗАПУСК ПОЛЕТА (через 100 миллисекунд)
         setTimeout(() => {
-            // ОБЯЗАТЕЛЬНО МИНУС ПЕРЕД 120
             emoji.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
-            emoji.style.opacity = '0'; // Чтобы плавно исчезали в небе
-        }, 50);
+        }, 100);
 
-
-        // Удаление
+        // УДАЛЕНИЕ (когда долетит)
         setTimeout(() => {
             emoji.remove();
-        }, duration * 1000);
-    }, 2000); // Каждые 2 секунды новый символ
+        }, 11000);
+    }, 2000); // Каждые 2 секунды новая цель
 }
 
-// Вызываем функцию в конце файла
-startFloatingEmojis();
 
 </script> 
 </body>

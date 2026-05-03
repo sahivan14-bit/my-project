@@ -428,12 +428,4 @@ body {
     overflow: hidden;
 }
 
-.bg-emoji {
-    position: absolute;
-    bottom: -100px;
-    opacity: 0.2;
-    z-index: -1;
-    pointer-events: none;
-    user-select: none;
-    will-change: transform;
-}
+
