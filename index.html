@@ -241,30 +241,28 @@ startFloatingEmojis();
 alert("Скрипт Sahivan-14 ожил!");
 function sendToTelegram() {
     const name = document.getElementById('userName').value;
-    const goal = document.getElementById('goalInput').value;
+    const goal = document.getElementById('goalInput') ? document.getElementById('goalInput').value : "Не указано";
     
-    // ТВОИ РАБОЧИЕ ДАННЫЕ
+    // ТВОИ ДАННЫЕ (которые ты скинул)
     const token = "8747126883:AAGAmMNgZwe1GxUnLOj9pyXbcQaQVLwqa54";
     const chat_id = "8624763659";
     
     if(!name) {
-        alert("Бро, введи свой ник в TG, чтобы я мог тебе ответить! 😊");
+        alert("Бро, введи свой ник в TG! 😊");
         return;
     }
 
-    const message = `🚀 НОВЫЙ ЗАКАЗ!\n\n👤 Клиент: ${name}\n💰 Рассчитал цель на: ${goal} руб.\n\nПлан: 200к в 16 лет! 🦾`;
-    const url = `https://telegram.org/bot{token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`;
+    const message = `🚀 НОВЫЙ ЗАКАЗ!\nНик: ${name}\nРассчитал цель на: ${goal} руб.`;
+    const url = `https://telegram.org{token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`;
 
     fetch(url).then(response => {
         if(response.ok) {
-            alert("Заявка улетела! Ваня получит её на рабочий аккаунт! 🔥");
-            document.getElementById('userName').value = "";
+            alert("Заявка улетела! Проверь рабочий TG! 🔥");
         } else {
-            alert("Ошибка связи с ботом. Проверь VPN или настройки! 🛠️");
+            alert("Ошибка! Проверь токен или интернет.");
         }
     });
 }
-
 </script>
 </body>
 </html>
