@@ -419,3 +419,21 @@ body {
     0% { transform: translateY(110vh) rotate(0deg); }
     100% { transform: translateY(-10vh) rotate(360deg); }
 }
+.floating-icons {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1 !important; /* Строго под карточками */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-emoji {
+    position: absolute;
+    bottom: -100px;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+    will-change: transform;
+}

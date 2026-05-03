@@ -6,7 +6,8 @@
     <title>Sahivan-14 | LUX Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>    <div class="floating-icons"></div>
+<body>   
+    <div class="floating-icons"></div>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
@@ -189,41 +190,41 @@ function createParticle(x, y) {
 
 // ФУНКЦИЯ ЛЕТАЮЩИХ ЦЕЛЕЙ
 // Код для смайликов
-const startFloatingEmojis = () => {
+function startFloatingEmojis() {
     const container = document.querySelector('.floating-icons');
     if (!container) return;
 
-    const emojis = ['🐶', '🏠', '🏎️', '💻', '💰', '🔥'];
-    
+    const emojis = ['🐶', '🏠', '🏎️', '💰', '🔥', '✨'];
+
     setInterval(() => {
         const emoji = document.createElement('div');
+        emoji.className = 'bg-emoji';
         emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
         
-        // Прямые стили, чтобы не зависеть от CSS
-        Object.assign(emoji.style, {
-            position: 'fixed',
-            bottom: '-50px',
-            left: Math.random() * 100 + 'vw',
-            fontSize: (Math.random() * 2 + 1) + 'rem',
-            opacity: '0.15',
-            zIndex: '-1',
-            pointerEvents: 'none',
-            transition: 'transform 15s linear'
-        });
+        // Рандомные настройки
+        const size = Math.random() * (2.5 - 1) + 1;
+        const left = Math.random() * 100;
+        const duration = Math.random() * (15 - 10) + 10; // 10-15 секунд на полет
+
+        emoji.style.left = left + 'vw';
+        emoji.style.fontSize = size + 'rem';
+        emoji.style.transition = `transform ${duration}s linear, opacity 1s`;
         
         container.appendChild(emoji);
 
-        // Запуск полета
+        // Запуск анимации через микро-паузу
         setTimeout(() => {
-            emoji.style.transform = 'translateY(-120vh) rotate(360deg)';
-        }, 100);
+            emoji.style.transform = `translateY(-120vh) rotate(${Math.random() * 360}deg)`;
+        }, 50);
 
         // Удаление
-        setTimeout(() => emoji.remove(), 16000);
-    }, 2000);
-};
+        setTimeout(() => {
+            emoji.remove();
+        }, duration * 1000);
+    }, 2000); // Каждые 2 секунды новый символ
+}
 
-// ВАЖНО: Вызываем функцию сразу!
+// Вызываем функцию в конце файла
 startFloatingEmojis();
 
 </script> 
