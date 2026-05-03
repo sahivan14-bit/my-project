@@ -74,6 +74,14 @@
         <p id="res" class="calc-res"></p>
     </div>
 </div>
+<!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+<div class="inner-block lead-form" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px;">
+    <h4 style="color: #457b9d; font-size: 0.9rem;">ЗАКАЗАТЬ ТАКОЙ САЙТ</h4>
+    <input type="text" id="userName" placeholder="Твой ник в TG" class="main-input" style="margin-bottom: 10px;">
+    <button onclick="sendToTelegram()" class="btn-send shine-btn small-btn" style="background: #1d3557;">
+        ОТПРАВИТЬ ЗАЯВКУ 🚀
+    </button>
+</div>
 
 <!-- ПОРТФОЛИО (БЕЗ РАСТЯГИВАНИЯ) -->
 <div class="card reveal fire-card"> <!-- Добавили магию огня -->
@@ -227,6 +235,31 @@ startFloatingEmojis();
 
 // 2. ПОТОМ ПРОВЕРЯЕМ, ЧТО ВСЁ РАБОТАЕТ
 alert("Скрипт Sahivan-14 ожил!");
+function sendToTelegram() {
+    const name = document.getElementById('userName').value;
+    const goal = document.getElementById('goalInput').value;
+    
+    // ТВОИ РАБОЧИЕ ДАННЫЕ
+    const token = "8747126883:AAGAmMNgZwe1GxUnLOj9pyXbcQaQVLwqa54";
+    const chat_id = "8624763659";
+    
+    if(!name) {
+        alert("Бро, введи свой ник в TG, чтобы я мог тебе ответить! 😊");
+        return;
+    }
+
+    const message = `🚀 НОВЫЙ ЗАКАЗ!\n\n👤 Клиент: ${name}\n💰 Рассчитал цель на: ${goal} руб.\n\nПлан: 200к в 16 лет! 🦾`;
+    const url = `https://telegram.org/bot{token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`;
+
+    fetch(url).then(response => {
+        if(response.ok) {
+            alert("Заявка улетела! Ваня получит её на рабочий аккаунт! 🔥");
+            document.getElementById('userName').value = "";
+        } else {
+            alert("Ошибка связи с ботом. Проверь VPN или настройки! 🛠️");
+        }
+    });
+}
 
 </script> 
 </body>
