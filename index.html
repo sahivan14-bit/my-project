@@ -306,7 +306,7 @@ startFloatingEmojis();
 
 // 2. ПОТОМ ПРОВЕРЯЕМ, ЧТО ВСЁ РАБОТАЕТ
 function sendToTelegram() {
-    const nameInput = document.getElementById('SahivanIT');
+    const nameInput = document.getElementById('userName');
     const name = nameInput ? nameInput.value.trim() : "";
     
     if (!name) {
@@ -318,8 +318,7 @@ function sendToTelegram() {
     const text = "Привет, Ваня! Я с твоего сайта. Мой ник: " + name;
     
     // Идеальная ссылка (проверь слэш после t.me/)
-    const url = "https://t.me/" + encodeURIComponent(text);
-
+   const url = "https://t.me/SahivanIT" + encodeURIComponent(text);
     // Открываем Телеграм
     window.open(url, '_blank');
 }
