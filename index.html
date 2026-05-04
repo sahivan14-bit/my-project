@@ -309,30 +309,24 @@ alert("Скрипт Sahivan-14 ожил!");
 function sendToTelegram() {
     const nameInput = document.getElementById('userName');
     const name = nameInput ? nameInput.value.trim() : "";
-    const token = "8747126883:AAGAmMNgZwe1GxUnLOj9pyXbcQaQVLwqa54";
-    const chat_id = "8624763659";
     
+    // ТВОЯ РАБОЧАЯ ПОЧТА (впиши свою любую почту здесь)
+    const myEmail = "sahivan14@gmail.com"; 
+
     if (!name) {
-        alert("Бро, введи ник! 😊");
+        alert("Бро, введи ник в TG! 😊");
         return;
     }
 
-    const message = encodeURIComponent(`🚀 НОВЫЙ ЗАКАЗ!\nНик: ${name}`);
-    const url = `https://telegram.org{token}/sendMessage?chat_id=${chat_id}&text=${message}`;
+    const subject = encodeURIComponent("Заказ на сайт от Sahivan-14");
+    const body = encodeURIComponent(`Привет, Ваня! Я хочу заказать сайт.\nМой ник в TG: ${name}`);
 
-    // Пытаемся отправить
-    fetch(url, { mode: 'no-cors' }) 
-        .then(() => {
-            // В режиме no-cors мы не узнаем точно, дошло ли, 
-            // но в 99% случаев это пробивает блокировку браузера
-            alert("Заявка отправлена! Проверь рабочий ТГ! 🔥");
-            nameInput.value = "";
-        })
-        .catch(err => {
-            alert("Сбой сети. Попробуй через мобильный интернет!");
-            console.error(err);
-        });
+    // Открываем почтовое приложение с готовым письмом
+    window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+
+    alert("Открываю твою почту! Просто нажми 'Отправить' в появившемся окне. 🚀");
 }
+
 
 // Функция выбора размера
 function selectSize(element) {
