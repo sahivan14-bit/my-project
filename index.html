@@ -140,35 +140,44 @@
         </div>
     </div>
 </div>
-<div class="portfolio-section" style="margin-top: 50px;">
-    <h2 class="title">Мои работы / Dashboard</h2>
-    
-    <div class="card reveal dashboard-card">
-        <div class="db-header">
-            <h4>AMG SYSTEM STATUS</h4>
+<div class="card reveal dashboard-card">
+    <div class="db-header">
+        <div class="brand-tag">AMG PERFORMANCE</div>
+        <div class="status-group">
+            <span class="status-text">SYSTEM ONLINE</span>
             <span class="status-blink"></span>
         </div>
-        
-        <div class="db-grid">
-            <div class="db-item">
-                <p>Engine</p>
-                <div class="db-val">READY</div>
-            </div>
-            <div class="db-item">
-                <p>Target</p>
-                <div class="db-val">AMG GT</div>
-            </div>
-        </div>
-
-        <div class="inner-block db-progress">
-            <p style="font-size: 0.7rem; margin-bottom: 10px;">PROGRESS TO GOAL: 100M ₽</p>
-            <div class="progress-bg"><div class="bar html" style="width: 15%"></div></div>
-            <p style="font-size: 0.6rem; margin-top: 5px; opacity: 0.7;">15.000.000 ₽ Collected</p>
-        </div>
-
-        <button class="btn-send nitro-btn" onclick="activateNitro()">ACTIVATE DRIVE MODE 🏎️</button>
     </div>
+    
+    <div class="db-grid">
+        <div class="db-item accent-blue">
+            <p>TURBO BOOST</p>
+            <div class="db-val"><span class="num" data-val="2.4">0</span> bar</div>
+        </div>
+        <div class="db-item accent-red">
+            <p>OIL TEMP</p>
+            <div class="db-val"><span class="num" data-val="98">0</span>°C</div>
+        </div>
+    </div>
+
+    <!-- График в стиле киберпанк -->
+    <div class="inner-block db-visual">
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="db-info">
+            <p>CURRENT BALANCE</p>
+            <h2 id="balance">15 240 000 ₽</h2>
+        </div>
+    </div>
+
+    <button class="btn-send drive-btn" onclick="toggleDriveMode()">
+        <span class="btn-text">ACTIVATE DRIVE MODE</span>
+        <span class="btn-icon">⚡</span>
+    </button>
 </div>
+
 
 <script>
 window.onload = () => {
@@ -348,6 +357,21 @@ function addToCart() {
     
     // Можно даже отправить уведомление тебе в ТГ, что кто-то "купил"
     // Но пока оставим так для теста
+}
+function toggleDriveMode() {
+    const btn = document.querySelector('.drive-btn');
+    const card = document.querySelector('.dashboard-card');
+    
+    btn.classList.toggle('active');
+    
+    if(btn.classList.contains('active')) {
+        btn.querySelector('.btn-text').innerText = "DRIVE MODE ACTIVE";
+        card.style.borderColor = "#3b82f6";
+        // Можно добавить звук мотора, если хочешь!
+    } else {
+        btn.querySelector('.btn-text').innerText = "ACTIVATE DRIVE MODE";
+        card.style.borderColor = "rgba(255,255,255,0.1)";
+    }
 }
 
 </script>
