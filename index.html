@@ -310,22 +310,27 @@ function sendToTelegram() {
     const nameInput = document.getElementById('userName');
     const name = nameInput ? nameInput.value.trim() : "";
     
-    // ТВОЯ РАБОЧАЯ ПОЧТА (впиши свою любую почту здесь)
-    const myEmail = "sahivan14@gmail.com"; 
+    // ТВОЙ РАБОЧИЙ НИК (без @)
+    const myTgNick = "SahivanIT"; 
 
     if (!name) {
-        alert("Бро, введи ник в TG! 😊");
+        alert("Бро, введи ник! 😊");
         return;
     }
 
-    const subject = encodeURIComponent("Заказ на сайт от Sahivan-14");
-    const body = encodeURIComponent(`Привет, Ваня! Я хочу заказать сайт.\nМой ник в TG: ${name}`);
+    // Формируем текст сообщения
+    const text = `Привет, Ваня! Я с твоего сайта. Мой ник: ${name}. Хочу заказать проект! 🚀`;
+    
+    // Создаем ссылку для перехода в Telegram
+    const tgUrl = `https://t.me{myTgNick}?text=${encodeURIComponent(text)}`;
 
-    // Открываем почтовое приложение с готовым письмом
-    window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+    // Перенаправляем пользователя
+    window.open(tgUrl, '_blank');
 
-    alert("Открываю твою почту! Просто нажми 'Отправить' в появившемся окне. 🚀");
+    alert("Переходим в Telegram! Просто нажми 'Отправить' в чате. 🔥");
+    nameInput.value = "";
 }
+
 
 
 // Функция выбора размера
