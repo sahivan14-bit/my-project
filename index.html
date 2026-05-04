@@ -306,19 +306,24 @@ startFloatingEmojis();
 
 // 2. ПОТОМ ПРОВЕРЯЕМ, ЧТО ВСЁ РАБОТАЕТ
 function sendToTelegram() {
-    const name = document.getElementById('SahivanIT').value.trim();
+    const nameInput = document.getElementById('SahivanIT');
+    const name = nameInput ? nameInput.value.trim() : "";
     
     if (!name) {
         alert("Бро, введи ник! 😊");
         return;
     }
 
-    // Жестко прописываем ссылку без всяких плюсиков
+    // Текст сообщения
     const text = "Привет, Ваня! Я с твоего сайта. Мой ник: " + name;
-    const url = "https://t.me" + encodeURIComponent(text);
+    
+    // Идеальная ссылка (проверь слэш после t.me/)
+    const url = "https://t.me/" + encodeURIComponent(text);
 
+    // Открываем Телеграм
     window.open(url, '_blank');
 }
+
 
 // Функция выбора размера
 function selectSize(element) {
