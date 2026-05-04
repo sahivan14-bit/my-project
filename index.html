@@ -306,31 +306,19 @@ startFloatingEmojis();
 
 // 2. ПОТОМ ПРОВЕРЯЕМ, ЧТО ВСЁ РАБОТАЕТ
 function sendToTelegram() {
-    const nameInput = document.getElementById('userName');
-    const name = nameInput ? nameInput.value.trim() : "";
+    const name = document.getElementById('SahivanIT').value.trim();
     
-    // ТВОЙ РАБОЧИЙ НИК (без @)
-    const myTgNick = "SahivanIT"; 
-
     if (!name) {
         alert("Бро, введи ник! 😊");
         return;
     }
 
-    // Формируем текст сообщения
-    const text = `Привет, Ваня! Я с твоего сайта. Мой ник: ${name}. Хочу заказать проект! 🚀`;
-    
-    // Создаем ссылку для перехода в Telegram
-    // Используем обычные кавычки и просто "склеиваем" строки через плюс
-const tgUrl = "https://t.me" + myTgNick + "?text=" + encodeURIComponent(text);
-    // Перенаправляем пользователя
-    window.open(tgUrl, '_blank');
+    // Жестко прописываем ссылку без всяких плюсиков
+    const text = "Привет, Ваня! Я с твоего сайта. Мой ник: " + name;
+    const url = "https://t.me" + encodeURIComponent(text);
 
-    alert("Переходим в Telegram! Просто нажми 'Отправить' в чате. 🔥");
-    nameInput.value = "";
+    window.open(url, '_blank');
 }
-
-
 
 // Функция выбора размера
 function selectSize(element) {
