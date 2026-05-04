@@ -430,5 +430,57 @@ body {
     background: transparent !important;
     pointer-events: none !important;
 }
+/* КАРТОЧКА МАГАЗИНА */
+.shop-card {
+    overflow: hidden;
+    background: #ffffff !important;
+}
+
+.badge {
+    position: absolute;
+    top: 20px; left: 20px;
+    background: #ff416c;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.product-img img {
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* ЭФФЕКТ ПРИ НАВЕДЕНИИ */
+.shop-card:hover .product-img img {
+    transform: scale(1.15) rotate(-5deg); /* Увеличение и легкий наклон */
+}
+
+.product-title { margin: 20px 0 5px; color: #1d3557; }
+.product-price { font-size: 1.5rem; font-weight: 800; color: #ff416c; margin-bottom: 20px; }
+
+.size-picker {
+    display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;
+}
+
+.size {
+    width: 40px; height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: bold; cursor: pointer;
+    transition: 0.3s;
+}
+
+.size:hover, .size.active {
+    background: #1d3557; color: white; border-color: #1d3557;
+}
+
+.buy-btn {
+    width: 100%;
+    margin-top: 0 !important;
+}
 
 
