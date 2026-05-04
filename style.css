@@ -533,5 +533,34 @@ body {
 .product-img {
     transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+.portfolio-section {
+    background: rgba(0, 0, 0, 0.05); /* Легкое затемнение фона секции */
+    padding: 80px 20px;
+    border-radius: 80px 80px 0 0; /* Плавный переход сверху */
+    margin-top: 150px !important;
+    width: 100%;
+}
+
+/* Сделаем заголовок покрупнее и посолиднее */
+.portfolio-section h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
+.shop-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px); /* Эффект матового стекла */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shop-card:hover {
+    box-shadow: 0 40px 80px rgba(0,0,0,0.4) !important;
+    transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) scale(1.02) !important;
+}
 
 
