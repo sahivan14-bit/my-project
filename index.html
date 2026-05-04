@@ -305,7 +305,6 @@ function startFloatingEmojis() {
 startFloatingEmojis();
 
 // 2. ПОТОМ ПРОВЕРЯЕМ, ЧТО ВСЁ РАБОТАЕТ
-alert("Скрипт Sahivan-14 ожил!");
 function sendToTelegram() {
     const nameInput = document.getElementById('userName');
     const name = nameInput ? nameInput.value.trim() : "";
@@ -323,7 +322,7 @@ function sendToTelegram() {
     
     // Создаем ссылку для перехода в Telegram
     // Используем обычные кавычки и просто "склеиваем" строки через плюс
-const tgUrl = "https://t.me" + "SahivanIT" + "?text=" + encodeURIComponent(text);
+const tgUrl = "https://t.me" + myTgNick + "?text=" + encodeURIComponent(text);
     // Перенаправляем пользователя
     window.open(tgUrl, '_blank');
 
