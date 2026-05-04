@@ -322,7 +322,8 @@ function sendToTelegram() {
     const text = `Привет, Ваня! Я с твоего сайта. Мой ник: ${name}. Хочу заказать проект! 🚀`;
     
     // Создаем ссылку для перехода в Telegram
-    const tgUrl = `https://t.me{myTgNick}?text=${encodeURIComponent(text)}`;
+    // Используем обычные кавычки и просто "склеиваем" строки через плюс
+const tgUrl = "https://t.me" + myTgNick + "?text=" + encodeURIComponent(text);
     // Перенаправляем пользователя
     window.open(tgUrl, '_blank');
 
