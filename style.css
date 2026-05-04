@@ -631,5 +631,48 @@ body {
     color: #fff !important;
     box-shadow: 0 0 30px rgba(59, 130, 246, 0.6) !important;
 }
+/* ЭКРАН С ГРАФИКОМ */
+.db-visual {
+    background: #000 !important;
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid #333 !important;
+    margin: 20px 0;
+}
+
+/* МАГИЧЕСКИЕ ВОЛНЫ */
+.wave-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: -50%; /* Сдвигаем вниз */
+    opacity: 0.4;
+}
+
+.wave {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(transparent, #3b82f6);
+    border-radius: 40%;
+    animation: wave-rotate 8s infinite linear;
+    left: -50%;
+}
+
+.wave:nth-child(2) {
+    animation-duration: 12s;
+    background: #60a5fa;
+    opacity: 0.3;
+}
+
+@keyframes wave-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
 
