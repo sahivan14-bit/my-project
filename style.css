@@ -504,5 +504,34 @@ body {
     border-color: #ff416c;
     transform: scale(1.1);
 }
+.portfolio-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем всё внутри секции */
+    justify-content: center;
+    width: 100%;
+    margin-top: 100px !important;
+    padding-bottom: 100px;
+}
+
+.shop-card {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    /* Убедись, что max-width остался 340px или 400px */
+}
+
+/* Добавим свечение заголовку, чтобы он не был плоским */
+.portfolio-section h2 {
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    font-size: 1.2rem;
+}
+.shop-card:hover .product-img {
+    transform: translateY(-10px); /* Картинка чуть всплывает */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.product-img {
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
 
