@@ -482,5 +482,27 @@ body {
     width: 100%;
     margin-top: 0 !important;
 }
+.product-img {
+    width: 100%;
+    height: 250px; /* Фиксируем высоту */
+    overflow: hidden;
+    border-radius: 30px; /* Закругляем углы картинки */
+    margin-bottom: 20px;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Это растянет мопса красиво, без искажений */
+    transition: 0.5s ease;
+}
+
+/* Эффект при клике на размер */
+.size.active {
+    background: #ff416c !important;
+    color: white;
+    border-color: #ff416c;
+    transform: scale(1.1);
+}
 
 

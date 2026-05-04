@@ -112,26 +112,35 @@
         ВКЛЮЧИТЬ NITRO 🚀
     </button>
 </div>
-<div class="card reveal shop-card">
-    <div class="badge">NEW</div>
-    <div class="product-img">
-        <!-- Можешь вставить сюда фото кроссовок или оставить мопса для стиля -->
-        <img src="png.jpg" alt="Product"> 
-    </div>
-    <div class="product-info">
-        <h3 class="product-title">AMG SPEED SNEAKERS</h3>
-        <p class="product-price">25 000 ₽</p>
-        
-        <div class="size-picker">
-            <span class="size">41</span>
-            <span class="size active">42</span>
-            <span class="size">43</span>
-            <span class="size">44</span>
+<!-- СЕКЦИЯ ПОРТФОЛИО -->
+<div class="portfolio-section" style="margin-top: 100px; width: 100%; text-align: center;">
+    <h2 style="color: white; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 40px;">
+        Мои работы / Магазин
+    </h2>
+
+    <div class="card reveal shop-card">
+        <!-- Твой код карточки с мопсом внутри -->
+        <div class="badge">NEW</div>
+        <div class="product-img">
+            <img src="png.jpg" alt="Pug Boss"> 
         </div>
-        
-        <button class="btn-send buy-btn shine-btn">В КОРЗИНУ 🛒</button>
+        <div class="product-info">
+            <h3 class="product-title">AMG SPEED SNEAKERS</h3>
+            <p class="product-price">25 000 ₽</p>
+            
+            <div class="size-picker">
+                <!-- Добавили вызов функции на размеры -->
+                <span class="size" onclick="selectSize(this)">41</span>
+                <span class="size active" onclick="selectSize(this)">42</span>
+                <span class="size" onclick="selectSize(this)">43</span>
+                <span class="size" onclick="selectSize(this)">44</span>
+            </div>
+            
+            <button class="btn-send buy-btn shine-btn" onclick="addToCart()">В КОРЗИНУ 🛒</button>
+        </div>
     </div>
 </div>
+
 <script>
 window.onload = () => {
     const cards = document.querySelectorAll('.card');
@@ -293,6 +302,25 @@ function sendToTelegram() {
             alert("Ошибка сети. Включи VPN для работы с Telegram API!");
         });
 }
+// Функция выбора размера
+function selectSize(element) {
+    // Убираем класс active у всех размеров в этой карточке
+    const sizes = element.parentElement.querySelectorAll('.size');
+    sizes.forEach(s => s.classList.remove('active'));
+    
+    // Добавляем active тому, на который нажали
+    element.classList.add('active');
+}
+
+// Функция для кнопки "В корзину"
+function addToCart() {
+    const size = document.querySelector('.size.active').innerText;
+    alert("Кроссовки " + size + " размера добавлены! Мопс одобряет. 🐶🔥");
+    
+    // Можно даже отправить уведомление тебе в ТГ, что кто-то "купил"
+    // Но пока оставим так для теста
+}
+
 </script>
 </body>
 </html>
