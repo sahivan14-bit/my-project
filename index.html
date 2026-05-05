@@ -359,21 +359,24 @@ function toggleDriveMode() {
     }
 }
 // НАСТРОЙКА ПОЯВЛЕНИЯ
-const sr = ScrollReveal({
-    origin: 'bottom', // Появляются снизу
-    distance: '60px', // Дистанция полета
-    duration: 1500,   // Скорость (1.5 секунды)
-    delay: 200,       // Небольшая задержка
-    reset: false      // Повторять ли при каждом скролле (лучше false)
-});
+window.onload = function() {
+    // НАСТРОЙКА ПОЯВЛЕНИЯ
+    const sr = ScrollReveal({
+        origin: 'bottom',
+        distance: '60px',
+        duration: 1500,
+        delay: 200,
+        reset: false
+    });
 
-// ПРИМЕНЯЕМ К КАРТОЧКАМ
-sr.reveal('.card', { interval: 200 }); // interval делает так, чтобы они выплывали по очереди
-sr.reveal('.portfolio-section', { delay: 400 });
+    // ПРИМЕНЯЕМ
+    sr.reveal('.reveal', { interval: 200 });
+};
 
-</script>
-</body>
+ </script>
+ </body>
 </html>
+
 
       
 
