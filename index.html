@@ -177,8 +177,7 @@
         <span class="btn-icon">⚡</span>
     </button>
 </div>
-
-
+<script src="https://unpkg.com"></script>
 <script>
 window.onload = () => {
     const cards = document.querySelectorAll('.card');
@@ -359,7 +358,18 @@ function toggleDriveMode() {
         balance.style.color = "#fff";
     }
 }
+// НАСТРОЙКА ПОЯВЛЕНИЯ
+const sr = ScrollReveal({
+    origin: 'bottom', // Появляются снизу
+    distance: '60px', // Дистанция полета
+    duration: 1500,   // Скорость (1.5 секунды)
+    delay: 200,       // Небольшая задержка
+    reset: false      // Повторять ли при каждом скролле (лучше false)
+});
 
+// ПРИМЕНЯЕМ К КАРТОЧКАМ
+sr.reveal('.card', { interval: 200 }); // interval делает так, чтобы они выплывали по очереди
+sr.reveal('.portfolio-section', { delay: 400 });
 
 </script>
 </body>
